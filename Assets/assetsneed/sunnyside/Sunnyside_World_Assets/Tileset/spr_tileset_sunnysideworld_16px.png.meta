@@ -15448,7 +15448,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_tileset_sunnysideworld_16px_731
+      name: bucket
       rect:
         serializedVersion: 2
         x: 640
@@ -36647,6 +36647,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      bucket: -512450347
       red bush: 444744723
       spr_tileset_sunnysideworld_16px_0: -2028426585
       spr_tileset_sunnysideworld_16px_1: -2107360062
@@ -38090,7 +38091,6 @@ TextureImporter:
       spr_tileset_sunnysideworld_16px_729: -623361617
       spr_tileset_sunnysideworld_16px_73: 105053870
       spr_tileset_sunnysideworld_16px_730: 108042431
-      spr_tileset_sunnysideworld_16px_731: -512450347
       spr_tileset_sunnysideworld_16px_732: 1796325927
       spr_tileset_sunnysideworld_16px_733: -483466499
       spr_tileset_sunnysideworld_16px_734: -1963504167
