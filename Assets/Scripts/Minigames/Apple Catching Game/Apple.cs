@@ -1,12 +1,10 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
-
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
-public class Apple : MonoBehaviour, IPointerClickHandler
+public class Apple : MonoBehaviour
 {
-    public System.Action onCaught;
+    public Action onCaught;
     public Action onMissed;
 
     Rigidbody2D rb;
@@ -14,25 +12,26 @@ public class Apple : MonoBehaviour, IPointerClickHandler
     public bool isCaughtOrMissed = false;
     public SpriteRenderer spriteRenderer;
 
-    // groundY triggers a miss when apple crosses it
     public float groundY = -4.5f;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Make sure collider is NOT a trigger
+        var col = GetComponent<Collider2D>();
+        col.isTrigger = false;
     }
 
     public void Initialize(float speed, AppleSpawner spawner)
     {
         fallSpeed = speed;
-        // zero gravity, we'll move manually for consistent speed
-        if (rb != null) rb.gravityScale = 0f;
+        rb.gravityScale = 0f; // move manually
     }
 
     void Update()
     {
-        // simple downward motion
         transform.position += Vector3.down * fallSpeed * Time.deltaTime;
 
         if (!isCaughtOrMissed && transform.position.y <= groundY)
@@ -43,12 +42,17 @@ public class Apple : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (isCaughtOrMissed) return;
-        isCaughtOrMissed = true;
-        onCaught?.Invoke();
-        Destroy(gameObject);
+
+        if (other.CompareTag("Bucket"))
+        {
+            isCaughtOrMissed = true;
+            onCaught?.Invoke();
+            Destroy(gameObject);
+        }
     }
 }
+
 
