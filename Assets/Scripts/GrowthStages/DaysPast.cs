@@ -1,11 +1,25 @@
+// DayButton.cs
 using UnityEngine;
 
-public class DayButton : MonoBehaviour
+public class DaysPast : MonoBehaviour
 {
+    public Plant targetPlant;
+    public bool applyToAll = false;
+
     public void AddDay()
     {
-        PlantContext.currentDaysPast++;
-        Debug.Log("Day increased! Now: " + PlantContext.currentDaysPast);
+        if (applyToAll)
+        {
+            PlantGameManager.Instance?.AddDayToAll();
+            return;
+        }
+
+        Plant p = targetPlant ?? PlantGameManager.Instance?.selectedPlant;
+        if (p == null)
+        {
+            Debug.LogError("DayButton: no target and no selected plant!");
+            return;
+        }
+        PlantGameManager.Instance.AddDay(p);
     }
 }
-

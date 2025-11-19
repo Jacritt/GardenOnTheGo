@@ -1,47 +1,107 @@
+// Plant.cs
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class GrowthStage
-{
-    public string stageName;
-    public Sprite sprite;
-    [Tooltip("Description shown in plant detail scene")]
-    [TextArea]
-    public string description;
-
-    [Header("Requirements (editable per stage)")]
-    public int waterRequired = 1;
-    public int daysRequired = 5;
-    public int minigamesRequired = 10;
-}
-
+[DisallowMultipleComponent]
 public class Plant : MonoBehaviour
 {
-    [Header("Growth stages (index = stage number)")]
-    public List<GrowthStage> growthStages = new List<GrowthStage>();
+    [Header("Identity (must be unique per prefab/instance)")]
+    [Tooltip("If empty: a GUID will be generated on first play and saved to PlayerPrefs for this instance.")]
+    [SerializeField] private string uniqueId = "";
 
-    [Header("Current stage index (0-based)")]
-    public int currentStage = 0;
-
-    // Optional runtime tracking (not persisted across scenes unless you implement saving)
-    [Header("Runtime progress (editable if you want to test)")]
-    public int currentWater = 0;
-    public int currentDaysPast = 0;
-    public int currentMinigamesPlayed = 0;
-
-    private void Reset()
+    public string UniqueId
     {
-        // helpful default so inspector isn't empty
-        growthStages = new List<GrowthStage> { new GrowthStage() };
+        get
+        {
+            if (string.IsNullOrEmpty(uniqueId))
+            {
+                uniqueId = Guid.NewGuid().ToString();
+            }
+            return uniqueId;
+        }
+        set => uniqueId = value;
     }
 
-    public GrowthStage GetCurrentStageData()
+    [Header("Data")]
+    public string plantName = "Plant";
+    public GrowthStage[] growthStages;
+
+    [Header("Runtime progress")]
+    public int currentStage = 0;
+    public int currentWater = 0;
+    public int currentDays = 0;
+    public int currentMinigames = 0;
+
+    public event Action<Plant> OnProgressChanged; // invoked when any progress changes (for UI hooks)
+
+    private void Awake()
     {
-        if (growthStages == null || growthStages.Count == 0) return null;
-        int idx = Mathf.Clamp(currentStage, 0, growthStages.Count - 1);
+        // Ensure unique id exists (persisted to the serialized field so it remains between runs in editor builds).
+        if (string.IsNullOrEmpty(uniqueId))
+        {
+            uniqueId = Guid.NewGuid().ToString();
+        }
+    }
+
+    public GrowthStage GetStage()
+    {
+        if (growthStages == null || growthStages.Length == 0)
+            return null;
+
+        int idx = Mathf.Clamp(currentStage, 0, growthStages.Length - 1);
         return growthStages[idx];
     }
-}
 
+    public bool RequirementsMet()
+    {
+        var s = GetStage();
+        if (s == null) return false;
+        return currentWater >= s.waterRequired &&
+               currentDays >= s.daysRequired &&
+               currentMinigames >= s.minigamesRequired;
+    }
+
+    // Upgrade returns true if upgraded
+    public bool Upgrade()
+    {
+        if (growthStages == null) return false;
+        if (currentStage + 1 >= growthStages.Length) return false;
+
+        currentStage++;
+        currentWater = 0;
+        currentDays = 0;
+        currentMinigames = 0;
+
+        OnProgressChanged?.Invoke(this);
+        return true;
+    }
+
+    // methods to mutate and notify
+    public void AddWater(int amount = 1)
+    {
+        currentWater += amount;
+        OnProgressChanged?.Invoke(this);
+    }
+
+    public void AddDay(int amount = 1)
+    {
+        currentDays += amount;
+        OnProgressChanged?.Invoke(this);
+    }
+
+    public void AddMinigame(int amount = 1)
+    {
+        currentMinigames += amount;
+        OnProgressChanged?.Invoke(this);
+    }
+
+    // Apply saved state (used during load)
+    public void ApplySave(int stage, int water, int days, int minis)
+    {
+        currentStage = stage;
+        currentWater = water;
+        currentDays = days;
+        currentMinigames = minis;
+        OnProgressChanged?.Invoke(this);
+    }
+}
