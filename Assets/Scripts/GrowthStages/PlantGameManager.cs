@@ -42,7 +42,7 @@ public class PlantGameManager : MonoBehaviour
             allPlants = FindObjectsOfType<Plant>();
         }
 
-        BuildLookup();
+        //BuildLookup();
         // load saved data
         PlantSaveSystem.LoadInto(plantById);
 
@@ -54,7 +54,7 @@ public class PlantGameManager : MonoBehaviour
         }
     }
 
-    private void BuildLookup()
+    /*private void BuildLookup()
     {
         plantById.Clear();
         foreach (var p in allPlants)
@@ -72,7 +72,7 @@ public class PlantGameManager : MonoBehaviour
                 Debug.LogWarning($"Duplicate plant id {p.UniqueId} on {p.name}; consider setting unique ids in inspector.");
         }
     }
-
+    */
     private void OnPlantProgressChanged(Plant p)
     {
         // broadcast to any listeners
@@ -85,45 +85,49 @@ public class PlantGameManager : MonoBehaviour
     public void SetSelectedPlant(Plant p)
     {
         selectedPlant = p;
+        PlantContext.selectedPlant = p;
         OnSelectedPlantChanged?.Invoke(p);
     }
 
-    #region Convenience mutation APIs
+    #region Mutation APIs
 
     public void AddWater(Plant target, int amount = 1)
     {
         if (target == null) return;
         target.AddWater(amount);
+        OnPlantProgressChanged(target);
     }
 
     public void AddWaterToAll(int amount = 1)
     {
         foreach (var p in allPlants)
-            p?.AddWater(amount);
+            if (p != null) AddWater(p ,amount);
     }
 
     public void AddMinigame(Plant target, int amount = 1)
     {
         if (target == null) return;
         target.AddMinigame(amount);
+        OnPlantProgressChanged(target);
     }
 
     public void AddMinigameToAll(int amount = 1)
     {
         foreach (var p in allPlants)
-            p?.AddMinigame(amount);
+            if (p != null) AddMinigame(p, amount);
     }
 
     public void AddDay(Plant target, int amount = 1)
     {
         if (target == null) return;
         target.AddDay(amount);
+        OnPlantProgressChanged(target);
     }
 
     public void AddDayToAll(int amount = 1)
     {
         foreach (var p in allPlants)
-            p?.AddDay(amount);
+            if (p != null) AddDay(p,amount);
     }
 
     #endregion

@@ -21,5 +21,6 @@ public class DaysPast : MonoBehaviour
             return;
         }
         PlantGameManager.Instance.AddDay(p);
+        Debug.Log($"Added day to {p.plantName}. Total: {p.currentDays}");
     }
 }

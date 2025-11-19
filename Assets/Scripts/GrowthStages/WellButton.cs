@@ -24,5 +24,6 @@ public class WellButton : MonoBehaviour
             return;
         }
         PlantGameManager.Instance.AddWater(p);
+        Debug.Log($"Added water to {p.plantName}. Total: {p.currentWater}");
     }
 }

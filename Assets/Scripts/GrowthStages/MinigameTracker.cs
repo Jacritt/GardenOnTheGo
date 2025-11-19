@@ -8,9 +8,9 @@ public class MinigameTracker : MonoBehaviour
 
     public void AddMinigame()
     {
+        // Check if we apply to all or single plant
         if (applyToAll)
         {
-            Debug.LogError("MiniGameButton added value");
             PlantGameManager.Instance?.AddMinigameToAll();
             return;
         }
@@ -19,8 +19,11 @@ public class MinigameTracker : MonoBehaviour
         if (p == null)
         {
             Debug.LogError("MiniGameButton: no target and no selected plant!");
-            return;
+            return; // <- prevents null reference
         }
+
         PlantGameManager.Instance.AddMinigame(p);
+        Debug.Log($"Added minigame to {p.plantName}. Total: {p.currentMinigames}");
     }
 }
+
