@@ -1,15 +1,38 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlantData", menuName = "Garden/Plant Data")]
-public class PlantData : ScriptableObject
+public class PlantData : MonoBehaviour
 {
-    public string plantName;
-    public Sprite seedSprite;
-    public Sprite saplingSprite;
-    public Sprite matureSprite;
-    public Sprite witheredSprite;
+    public static PlantData Instance;
 
-    public float growthTimeDays = 1f; // time to next stage
-    public int minigameRequired = 1; // number of minigames to complete
+    public int currentStage = 0;
+
+    public int water;
+    public int waterRequired = 1;
+
+    public int daysPassed;
+    public int daysRequired = 5;
+
+    public int minigamesPlayed;
+    public int minigamesRequired = 10;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);  // stays between scenes
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public bool RequirementsMet()
+    {
+        return water >= waterRequired &&
+               daysPassed >= daysRequired &&
+               minigamesPlayed >= minigamesRequired;
+    }
 }
 
