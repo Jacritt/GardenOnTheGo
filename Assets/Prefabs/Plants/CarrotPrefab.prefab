@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed019f9d38a4cb42b0618bcabbf2302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueId: 
+  uniqueId: 7ba53584-3c8b-4a8e-8419-ed87d358d771
   plantName: Carrot
   growthStages:
   - stageName: Seed

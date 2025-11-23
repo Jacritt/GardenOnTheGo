@@ -66,6 +66,6 @@ MonoBehaviour:
     daysRequired: 3
     minigamesRequired: 3
   currentStage: 0
-  currentWater: 1
-  currentDays: 1
-  currentMinigames: 1
+  currentWater: 0
+  currentDays: 0
+  currentMinigames: 0
