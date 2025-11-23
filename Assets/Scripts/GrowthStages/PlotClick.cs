@@ -2,25 +2,41 @@ using UnityEngine;
 
 public class PlotClick : MonoBehaviour
 {
-    public GameObject plantPrefab;  // assign BeetrootPrefab here in inspector
     private GameObject plantedInstance;
 
     public void OnClick()
     {
-        // Spawn an instance at the plot position
-        plantedInstance = Instantiate(plantPrefab, transform.position, Quaternion.identity);
+        if (plantedInstance == null)
+        {
+            // Open UI for selecting plant
+            PlantSelectionUI.Instance.Open(this);
+        }
+        else
+        {
+            // Already planted ? open detail
+            OpenPlantDetail();
+        }
+    }
+
+    // Called by the UI selection buttons
+    public void Plant(GameObject prefab, string plantName)
+    {
+        plantedInstance = Instantiate(prefab, transform.position, Quaternion.identity);
         DontDestroyOnLoad(plantedInstance);
 
+        var plant = plantedInstance.GetComponent<Plant>();
+        PlantContext.selectedPlant = plant;
+        PlantGameManager.Instance.selectedPlant = plant;
+    }
 
-        // Assign the Plant component to your manager/context
+    private void OpenPlantDetail()
+    {
         Plant selectedPlant = plantedInstance.GetComponent<Plant>();
         PlantContext.selectedPlant = selectedPlant;
         PlantGameManager.Instance.selectedPlant = selectedPlant;
 
-        Debug.Log("Selected plant instance: " + selectedPlant.plantName);
-
-        // Load the detail scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("PlantDetailScene");
     }
 }
+
 
