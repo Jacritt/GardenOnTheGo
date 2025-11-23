@@ -42,9 +42,19 @@ public class PlantGameManager : MonoBehaviour
             allPlants = FindObjectsOfType<Plant>();
         }
 
-        //BuildLookup();
+        BuildLookup();
         // load saved data
         PlantSaveSystem.LoadInto(plantById);
+
+        foreach (var kvp in plantById)
+        {
+            Plant p = kvp.Value;
+            if (p == null)
+            {
+                Debug.LogError("Null plant in dictionary!");
+                continue;
+            }
+        }
 
         // subscribe to plants' change events to re-broadcast and auto-save
         foreach (var p in allPlants)
@@ -54,7 +64,7 @@ public class PlantGameManager : MonoBehaviour
         }
     }
 
-    /*private void BuildLookup()
+    private void BuildLookup()
     {
         plantById.Clear();
         foreach (var p in allPlants)
@@ -72,7 +82,7 @@ public class PlantGameManager : MonoBehaviour
                 Debug.LogWarning($"Duplicate plant id {p.UniqueId} on {p.name}; consider setting unique ids in inspector.");
         }
     }
-    */
+    
     private void OnPlantProgressChanged(Plant p)
     {
         // broadcast to any listeners
@@ -87,6 +97,30 @@ public class PlantGameManager : MonoBehaviour
         selectedPlant = p;
         PlantContext.selectedPlant = p;
         OnSelectedPlantChanged?.Invoke(p);
+    }
+
+    public void RegisterPlant(Plant p)
+    {
+        // Expand allPlants array
+        var list = new List<Plant>(allPlants);
+        list.Add(p);
+        allPlants = list.ToArray();
+
+        // Add to dictionary
+        if (!string.IsNullOrEmpty(p.UniqueId) && !plantById.ContainsKey(p.UniqueId))
+            plantById[p.UniqueId] = p;
+
+        // Subscribe to autosave updates
+        p.OnProgressChanged += OnPlantProgressChanged;
+
+        // Save immediately
+        PlantSaveSystem.SaveAll(allPlants);
+    }
+    public Plant GetPlantById(string id)
+    {
+        if (plantById.TryGetValue(id, out Plant p))
+            return p;
+        return null;
     }
 
     #region Mutation APIs

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class PlotClick : MonoBehaviour
 {
@@ -22,11 +23,20 @@ public class PlotClick : MonoBehaviour
     public void Plant(GameObject prefab, string plantName)
     {
         plantedInstance = Instantiate(prefab, transform.position, Quaternion.identity);
+
+        Plant plant = plantedInstance.GetComponent<Plant>();
+
+        // IMPORTANT: ensure unique Save ID exists
+        if (string.IsNullOrEmpty(plant.UniqueId))
+            plant.UniqueId = Guid.NewGuid().ToString();
+
         DontDestroyOnLoad(plantedInstance);
 
-        var plant = plantedInstance.GetComponent<Plant>();
-        PlantContext.selectedPlant = plant;
         PlantGameManager.Instance.selectedPlant = plant;
+        PlantContext.selectedPlant = plant;
+
+        // ADD THE PLANT TO PlantGameManager’s list and dictionary
+        PlantGameManager.Instance.RegisterPlant(plant);
     }
 
     private void OpenPlantDetail()
