@@ -62838,8 +62838,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allPlants:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 566282265175568479, guid: 138e264a2efb30c4bbb5412cb5ef097b, type: 3}
+  - {fileID: 4137774818035124549, guid: 5a4c26204622b2c4a8a557cfc3e0ef97, type: 3}
 --- !u!4 &1971408301
 Transform:
   m_ObjectHideFlags: 0
