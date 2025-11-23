@@ -15,7 +15,7 @@ public class PlantSceneController : MonoBehaviour
     public Button upgradeButton;
 
     [Header("Return")]
-    public string gardenSceneName = "GardenScene";
+    public string gardenSceneName = "Main";
 
     private Plant current;
 

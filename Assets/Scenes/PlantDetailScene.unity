@@ -1219,7 +1219,7 @@ MonoBehaviour:
   daysText: {fileID: 1849425989}
   minigamesText: {fileID: 484880014}
   upgradeButton: {fileID: 1567959978}
-  gardenSceneName: PlantTest
+  gardenSceneName: Main
 --- !u!4 &1593567003
 Transform:
   m_ObjectHideFlags: 0
