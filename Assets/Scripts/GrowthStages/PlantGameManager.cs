@@ -12,7 +12,9 @@ public class PlantGameManager : MonoBehaviour
     public Plant[] allPlants; // optional pre-assign, otherwise auto-find at Start
 
     // fast lookup by UniqueId
-    private Dictionary<string, Plant> plantById = new Dictionary<string, Plant>();
+    public Dictionary<string, Plant> plantById = new Dictionary<string, Plant>();
+    public Dictionary<string, Plant> plantsByPlot = new Dictionary<string, Plant>();
+
 
     public Plant selectedPlant { get; set; }
 
@@ -30,7 +32,6 @@ public class PlantGameManager : MonoBehaviour
         else if (Instance != this)
         {
             Destroy(gameObject);
-            return;
         }
     }
 

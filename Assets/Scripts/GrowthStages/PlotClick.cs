@@ -1,9 +1,28 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class PlotClick : MonoBehaviour
 {
+    public Image plotButtonImage;
+    public Image plantImage;
+    public TMPro.TextMeshProUGUI plotButtonText;
+
+    public string plotId;
+
     private GameObject plantedInstance;
+
+    private void UpdateVisualState(bool hasPlant)
+    {
+        if (plotButtonImage != null)
+            plotButtonImage.enabled = !hasPlant; // Show background only when no plant
+
+        if (plantImage != null)
+            plantImage.enabled = hasPlant; // Show plant image only when planted
+
+        if (plotButtonText != null)
+            plotButtonText.enabled = !hasPlant;
+    }
 
     public void OnClick()
     {
@@ -37,6 +56,34 @@ public class PlotClick : MonoBehaviour
 
         // ADD THE PLANT TO PlantGameManager’s list and dictionary
         PlantGameManager.Instance.RegisterPlant(plant);
+
+        PlantGameManager.Instance.plantsByPlot[plotId] = plant;
+        // Update the plot's button UI to match the plant stage
+        var stage = plant.GetStage();
+        if (plantImage != null && stage != null)
+            plantImage.sprite = stage.sprite;
+
+        UpdateVisualState(true);
+    }
+
+    private void OnEnable()
+    {
+        if (PlantGameManager.Instance != null &&
+            PlantGameManager.Instance.plantsByPlot.TryGetValue(plotId, out Plant plant))
+        {
+            plantedInstance = plant.gameObject;
+
+            // Update plant sprite
+            if (plantImage != null)
+                plantImage.sprite = plant.GetStage().sprite;
+
+            // Update button/text/image visibility
+            UpdateVisualState(true);
+        }
+        else
+        {
+            UpdateVisualState(false);
+        }
     }
 
     private void OpenPlantDetail()
