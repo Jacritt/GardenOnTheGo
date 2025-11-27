@@ -99,7 +99,7 @@ public class PlotClick : MonoBehaviour
         PlantContext.selectedPlant = selectedPlant;
         PlantGameManager.Instance.selectedPlant = selectedPlant;
 
-        PlantSelectionUI.Instance.HideCanvas();
+        //PlantSelectionUI.Instance.HideCanvas();
         UnityEngine.SceneManagement.SceneManager.LoadScene("PlantDetailScene");
 
     }
