@@ -69,3 +69,4 @@ MonoBehaviour:
   currentWater: 0
   currentDays: 0
   currentMinigames: 0
+  plotId: 

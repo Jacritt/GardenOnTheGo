@@ -37,27 +37,21 @@ public class PlantGameManager : MonoBehaviour
 
     private void Start()
     {
-        // if not assigned, find all Plants in the scene
+        // find all plants in scene if not pre-assigned
         if (allPlants == null || allPlants.Length == 0)
         {
             allPlants = FindObjectsOfType<Plant>();
         }
 
         BuildLookup();
+
         // load saved data
         PlantSaveSystem.LoadInto(plantById);
 
-        foreach (var kvp in plantById)
-        {
-            Plant p = kvp.Value;
-            if (p == null)
-            {
-                Debug.LogError("Null plant in dictionary!");
-                continue;
-            }
-        }
+        // Rebuild mapping from plotId ? Plant
+        RebuildPlotMapping();
 
-        // subscribe to plants' change events to re-broadcast and auto-save
+        // Subscribe to OnProgressChanged events for all plants
         foreach (var p in allPlants)
         {
             if (p == null) continue;
@@ -83,7 +77,20 @@ public class PlantGameManager : MonoBehaviour
                 Debug.LogWarning($"Duplicate plant id {p.UniqueId} on {p.name}; consider setting unique ids in inspector.");
         }
     }
-    
+
+    private void RebuildPlotMapping()
+    {
+        plantsByPlot.Clear();
+        foreach (var p in FindObjectsOfType<Plant>())
+        {
+            if (!string.IsNullOrEmpty(p.plotId))
+            {
+                plantsByPlot[p.plotId] = p;
+                Debug.Log($"[PlantGameManager] Restored plant {p.name} for plotId {p.plotId}");
+            }
+        }
+    }
+
     private void OnPlantProgressChanged(Plant p)
     {
         // broadcast to any listeners
@@ -111,12 +118,21 @@ public class PlantGameManager : MonoBehaviour
         if (!string.IsNullOrEmpty(p.UniqueId) && !plantById.ContainsKey(p.UniqueId))
             plantById[p.UniqueId] = p;
 
+        // Add to plot mapping
+        if (!string.IsNullOrEmpty(p.plotId))
+            plantsByPlot[p.plotId] = p;
+
+        // Select the plant
+        SetSelectedPlant(p);
+        PlantContext.selectedPlant = p;
+
         // Subscribe to autosave updates
         p.OnProgressChanged += OnPlantProgressChanged;
 
         // Save immediately
         PlantSaveSystem.SaveAll(allPlants);
     }
+
     public Plant GetPlantById(string id)
     {
         if (plantById.TryGetValue(id, out Plant p))

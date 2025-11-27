@@ -11,6 +11,7 @@ public class Sceneswitcher : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         selectedLevel = level;
+        PlantSelectionUI.Instance.HideCanvas();
         SceneManager.LoadScene(sceneName);
     }
 }

@@ -32,6 +32,9 @@ public class Plant : MonoBehaviour
     public int currentDays = 0;
     public int currentMinigames = 0;
 
+    [Header("Plot assignment")]
+    public string plotId = "";
+
     public event Action<Plant> OnProgressChanged; // invoked when any progress changes (for UI hooks)
 
     private void Awake()
@@ -103,5 +106,6 @@ public class Plant : MonoBehaviour
         currentDays = days;
         currentMinigames = minis;
         OnProgressChanged?.Invoke(this);
+        Debug.Log($"[Plant] Applied save to {gameObject.name}: Stage {stage}, Water {water}, Days {days}, Minis {minis}");
     }
 }

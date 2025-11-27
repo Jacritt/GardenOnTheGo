@@ -4,6 +4,7 @@ using System;
 
 public class PlotClick : MonoBehaviour
 {
+    [Header("UI")]
     public Image plotButtonImage;
     public Image plantImage;
     public TMPro.TextMeshProUGUI plotButtonText;
@@ -42,16 +43,21 @@ public class PlotClick : MonoBehaviour
     public void Plant(GameObject prefab, string plantName)
     {
         plantedInstance = Instantiate(prefab, transform.position, Quaternion.identity);
+        DontDestroyOnLoad(plantedInstance);
 
         Plant plant = plantedInstance.GetComponent<Plant>();
+        Debug.Log($"[PlotClick] Planting {plantName} with prefab {prefab.name}");
+
 
         // IMPORTANT: ensure unique Save ID exists
         if (string.IsNullOrEmpty(plant.UniqueId))
-            plant.UniqueId = Guid.NewGuid().ToString();
+            plant.UniqueId = System.Guid.NewGuid().ToString();
+
+        plant.plotId = plotId;
 
         DontDestroyOnLoad(plantedInstance);
 
-        PlantGameManager.Instance.selectedPlant = plant;
+        PlantGameManager.Instance.SetSelectedPlant(plant);
         PlantContext.selectedPlant = plant;
 
         // ADD THE PLANT TO PlantGameManager’s list and dictionary
@@ -64,25 +70,26 @@ public class PlotClick : MonoBehaviour
             plantImage.sprite = stage.sprite;
 
         UpdateVisualState(true);
+        Debug.Log($"[PlotClick] Plant {plantName} registered and UI updated for plotId {plotId}");
     }
 
     private void OnEnable()
     {
-        if (PlantGameManager.Instance != null &&
-            PlantGameManager.Instance.plantsByPlot.TryGetValue(plotId, out Plant plant))
+        if (PlantGameManager.Instance != null)
         {
-            plantedInstance = plant.gameObject;
+            if (PlantGameManager.Instance.plantsByPlot.TryGetValue(plotId, out Plant plant))
+            {
+                plantedInstance = plant.gameObject;
 
-            // Update plant sprite
-            if (plantImage != null)
-                plantImage.sprite = plant.GetStage().sprite;
+                if (plantImage != null)
+                    plantImage.sprite = plant.GetStage()?.sprite;
 
-            // Update button/text/image visibility
-            UpdateVisualState(true);
-        }
-        else
-        {
-            UpdateVisualState(false);
+                UpdateVisualState(true);
+            }
+            else
+            {
+                UpdateVisualState(false);
+            }
         }
     }
 
@@ -92,7 +99,9 @@ public class PlotClick : MonoBehaviour
         PlantContext.selectedPlant = selectedPlant;
         PlantGameManager.Instance.selectedPlant = selectedPlant;
 
+        PlantSelectionUI.Instance.HideCanvas();
         UnityEngine.SceneManagement.SceneManager.LoadScene("PlantDetailScene");
+
     }
 }
 
