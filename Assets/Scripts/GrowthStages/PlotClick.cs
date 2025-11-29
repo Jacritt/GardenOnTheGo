@@ -75,21 +75,21 @@ public class PlotClick : MonoBehaviour
 
     private void OnEnable()
     {
-        if (PlantGameManager.Instance != null)
+        if (PlantGameManager.Instance.plantsByPlot.TryGetValue(plotId, out Plant plant))
         {
-            if (PlantGameManager.Instance.plantsByPlot.TryGetValue(plotId, out Plant plant))
-            {
-                plantedInstance = plant.gameObject;
+            plantedInstance = plant.gameObject;
 
-                if (plantImage != null)
-                    plantImage.sprite = plant.GetStage()?.sprite;
+            PlantContext.selectedPlant = plant;
+            PlantGameManager.Instance.selectedPlant = plant;
 
-                UpdateVisualState(true);
-            }
-            else
-            {
+            if (plantImage != null)
+                plantImage.sprite = plant.GetStage()?.sprite;
+
+            UpdateVisualState(true);
+        }
+        else
+        {
                 UpdateVisualState(false);
-            }
         }
     }
 
@@ -103,6 +103,20 @@ public class PlotClick : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("PlantDetailScene");
 
     }
+
+    public void RefreshFromManager()
+    {
+        if (PlantGameManager.Instance.plantsByPlot.TryGetValue(plotId, out Plant plant))
+        {
+            plantedInstance = plant.gameObject;
+
+            if (plantImage != null)
+                plantImage.sprite = plant.GetStage()?.sprite;
+
+            UpdateVisualState(true);
+        }
+    }
+
 }
 
 

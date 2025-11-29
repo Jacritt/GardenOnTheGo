@@ -10,8 +10,6 @@ public class PlantSelectionUI : MonoBehaviour
     public Transform buttonContainer;
     public GameObject buttonTemplate;
 
-    public Canvas mainCanvas;
-
     private PlotClick activePlot; // The plot player clicked
 
     private void Awake()
@@ -22,7 +20,7 @@ public class PlantSelectionUI : MonoBehaviour
             Instance = this;
             // Make sure we are a root object that can be DontDestroyOnLoad'd
             // If this object has parents, you should call DontDestroyOnLoad on the root.
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else if (Instance != this)
         {
@@ -65,23 +63,6 @@ public class PlantSelectionUI : MonoBehaviour
                 });
             }
         }
-    }
-
-    private void OnEnable()
-    {
-        ShowCanvas();
-    }
-
-    public void ShowCanvas()
-    {
-        if (mainCanvas != null)
-            mainCanvas.gameObject.SetActive(true);
-    }
-
-    public void HideCanvas()
-    {
-        if (mainCanvas != null)
-            mainCanvas.gameObject.SetActive(false);
     }
 
     public void Close()

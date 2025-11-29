@@ -38,10 +38,10 @@ public class PlantGameManager : MonoBehaviour
     private void Start()
     {
         // find all plants in scene if not pre-assigned
-        if (allPlants == null || allPlants.Length == 0)
+        /*if (allPlants == null || allPlants.Length == 0)
         {
             allPlants = FindObjectsOfType<Plant>();
-        }
+        }*/
 
         BuildLookup();
 
@@ -81,6 +81,7 @@ public class PlantGameManager : MonoBehaviour
     private void RebuildPlotMapping()
     {
         plantsByPlot.Clear();
+
         foreach (var p in FindObjectsOfType<Plant>())
         {
             if (!string.IsNullOrEmpty(p.plotId))
@@ -89,6 +90,12 @@ public class PlantGameManager : MonoBehaviour
                 Debug.Log($"[PlantGameManager] Restored plant {p.name} for plotId {p.plotId}");
             }
         }
+
+        foreach (var plot in FindObjectsOfType<PlotClick>())
+        {
+            plot.RefreshFromManager();
+        }
+
     }
 
     private void OnPlantProgressChanged(Plant p)

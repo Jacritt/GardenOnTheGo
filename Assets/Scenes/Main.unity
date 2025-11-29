@@ -3871,7 +3871,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef886074c504e0946a1fcce0954acba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allPlants: []
+  allPlants:
+  - {fileID: 566282265175568479, guid: 138e264a2efb30c4bbb5412cb5ef097b, type: 3}
+  - {fileID: 4137774818035124549, guid: 5a4c26204622b2c4a8a557cfc3e0ef97, type: 3}
 --- !u!1 &849270012
 GameObject:
   m_ObjectHideFlags: 0
@@ -5412,7 +5414,6 @@ GameObject:
   - component: {fileID: 1189349019}
   - component: {fileID: 1189349018}
   - component: {fileID: 1189349017}
-  - component: {fileID: 1189349021}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5509,19 +5510,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1189349021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189349016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded113283e4c6ef4f84d2d71c6288bad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plotsGroup: {fileID: 1811796762}
 --- !u!1 &1196357532
 GameObject:
   m_ObjectHideFlags: 0
@@ -6310,7 +6298,7 @@ MonoBehaviour:
   panel: {fileID: 1808521543}
   buttonContainer: {fileID: 1024330299}
   buttonTemplate: {fileID: 1327583103082373417, guid: b2164a01bccc03e47a4dc81570fb35b2, type: 3}
-  mainCanvas: {fileID: 1189349019}
+  mainCanvas: {fileID: 0}
 --- !u!1 &1318944446
 GameObject:
   m_ObjectHideFlags: 0
@@ -18367,6 +18355,14 @@ PrefabInstance:
     - target: {fileID: 6829436973208891020, guid: ab6b4b16d721269408948ddb25f0889c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771994984144842823, guid: ab6b4b16d721269408948ddb25f0889c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771994984144842823, guid: ab6b4b16d721269408948ddb25f0889c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -63942,6 +63938,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6829436973208891020, guid: ab6b4b16d721269408948ddb25f0889c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771994984144842823, guid: ab6b4b16d721269408948ddb25f0889c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771994984144842823, guid: ab6b4b16d721269408948ddb25f0889c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771994984144842823, guid: ab6b4b16d721269408948ddb25f0889c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771994984144842823, guid: ab6b4b16d721269408948ddb25f0889c, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
