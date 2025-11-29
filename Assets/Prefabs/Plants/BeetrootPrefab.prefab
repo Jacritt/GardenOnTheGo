@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed019f9d38a4cb42b0618bcabbf2302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueId: 
+  uniqueId: d847a333-4540-4831-9ca4-212a021612fb
+  prefabSource: {fileID: 0}
   plantName: Beetroot
   growthStages:
   - stageName: Seed
@@ -69,3 +70,4 @@ MonoBehaviour:
   currentWater: 0
   currentDays: 0
   currentMinigames: 0
+  plotId: 

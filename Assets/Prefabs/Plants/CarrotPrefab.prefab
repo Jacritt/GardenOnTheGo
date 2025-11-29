@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueId: 7ba53584-3c8b-4a8e-8419-ed87d358d771
+  prefabSource: {fileID: 0}
   plantName: Carrot
   growthStages:
   - stageName: Seed

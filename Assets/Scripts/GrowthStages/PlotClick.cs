@@ -46,6 +46,7 @@ public class PlotClick : MonoBehaviour
         DontDestroyOnLoad(plantedInstance);
 
         Plant plant = plantedInstance.GetComponent<Plant>();
+        plant.prefabSource = prefab;
         Debug.Log($"[PlotClick] Planting {plantName} with prefab {prefab.name}");
 
 
@@ -83,13 +84,13 @@ public class PlotClick : MonoBehaviour
             PlantGameManager.Instance.selectedPlant = plant;
 
             if (plantImage != null)
-                plantImage.sprite = plant.GetStage()?.sprite;
+                plantImage.sprite = plant.prefabSource.GetComponent<Plant>().GetStage()?.sprite;
 
             UpdateVisualState(true);
         }
         else
         {
-                UpdateVisualState(false);
+            UpdateVisualState(false);
         }
     }
 
@@ -111,7 +112,7 @@ public class PlotClick : MonoBehaviour
             plantedInstance = plant.gameObject;
 
             if (plantImage != null)
-                plantImage.sprite = plant.GetStage()?.sprite;
+                plantImage.sprite = plant.prefabSource.GetComponent<Plant>().GetStage()?.sprite;
 
             UpdateVisualState(true);
         }

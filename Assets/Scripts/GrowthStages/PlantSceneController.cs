@@ -24,18 +24,9 @@ public class PlantSceneController : MonoBehaviour
         Debug.Log("PlantSceneController received plant: " + current);
 
         // 1. Try context
-        current = PlantContext.selectedPlant;
-
-        // 2. Try manager
-        if (current == null && PlantGameManager.Instance != null)
-            current = PlantGameManager.Instance.selectedPlant;
-
-        // 3. Try first plant in list
-        if (current == null && PlantGameManager.Instance != null && PlantGameManager.Instance.allPlants != null)
-        {
-            if (PlantGameManager.Instance.allPlants.Length > 0)
-                current = PlantGameManager.Instance.allPlants[0];
-        }
+        var inst = PlantContext.selectedPlant;
+        if (inst != null)
+            current = inst.prefabSource.GetComponent<Plant>();  // Use prefab version
 
         // FAIL
         if (current == null)

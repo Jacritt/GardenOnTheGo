@@ -8,6 +8,7 @@ public class Plant : MonoBehaviour
     [Header("Identity (must be unique per prefab/instance)")]
     [Tooltip("If empty: a GUID will be generated on first play and saved to PlayerPrefs for this instance.")]
     [SerializeField] private string uniqueId = "";
+    public GameObject prefabSource;   // the prefab used to create this instance
 
     public string UniqueId
     {
