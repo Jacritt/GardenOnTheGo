@@ -46,6 +46,11 @@ public class PlotClick : MonoBehaviour
         DontDestroyOnLoad(plantedInstance);
 
         Plant plant = plantedInstance.GetComponent<Plant>();
+        plant.currentStage = 0;
+        plant.currentWater = 0;
+        plant.currentDays = 0;
+        plant.currentMinigames = 0;
+
         plant.prefabSource = prefab;
         Debug.Log($"[PlotClick] Planting {plantName} with prefab {prefab.name}");
 
