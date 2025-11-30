@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1672645118631681119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7426329372917734087}
+  - component: {fileID: 566282265175568479}
+  m_Layer: 0
+  m_Name: CarrotPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7426329372917734087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672645118631681119}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 98, y: 19, z: 0}
+  m_LocalScale: {x: 7544.6963, y: 7544.6963, z: 7544.6963}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &566282265175568479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672645118631681119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed019f9d38a4cb42b0618bcabbf2302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: 7ba53584-3c8b-4a8e-8419-ed87d358d771
+  prefabSource: {fileID: 0}
+  plantName: Carrot
+  growthStages:
+  - stageName: Seed
+    sprite: {fileID: -1699937938, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
+    description: This is the first stage
+    waterRequired: 1
+    daysRequired: 1
+    minigamesRequired: 1
+  - stageName: Sapling
+    sprite: {fileID: 1205743080, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
+    description: This is the second
+    waterRequired: 2
+    daysRequired: 2
+    minigamesRequired: 2
+  - stageName: Mature
+    sprite: {fileID: -1144708191, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
+    description: This the Third
+    waterRequired: 3
+    daysRequired: 3
+    minigamesRequired: 3
+  currentStage: 0
+  currentWater: 0
+  currentDays: 0
+  currentMinigames: 0
+  plotId: 

@@ -333,6 +333,7 @@ GameObject:
   - component: {fileID: 90301299}
   - component: {fileID: 90301298}
   - component: {fileID: 90301297}
+  - component: {fileID: 90301300}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -416,6 +417,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 90301300}
+        m_TargetAssemblyTypeName: MinigameTracker, Assembly-CSharp
+        m_MethodName: AddMinigame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &90301298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,6 +467,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 90301295}
   m_CullTransparentMesh: 1
+--- !u!114 &90301300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90301295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba1a122f30a65d47ae2e416732ce160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPlant: {fileID: 566282265175568479, guid: 138e264a2efb30c4bbb5412cb5ef097b, type: 3}
+  applyToAll: 1
 --- !u!1 &232191371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,6 +1217,7 @@ GameObject:
   - component: {fileID: 1579599570}
   - component: {fileID: 1579599569}
   - component: {fileID: 1579599568}
+  - component: {fileID: 1579599571}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -1273,6 +1301,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1579599571}
+        m_TargetAssemblyTypeName: MinigameTracker, Assembly-CSharp
+        m_MethodName: AddMinigame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1579599569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1311,6 +1351,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579599566}
   m_CullTransparentMesh: 1
+--- !u!114 &1579599571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579599566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba1a122f30a65d47ae2e416732ce160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPlant: {fileID: 4137774818035124549, guid: 5a4c26204622b2c4a8a557cfc3e0ef97, type: 3}
+  applyToAll: 1
 --- !u!1 &1684409700
 GameObject:
   m_ObjectHideFlags: 0
