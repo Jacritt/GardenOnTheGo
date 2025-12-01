@@ -50,7 +50,8 @@ MonoBehaviour:
   growthStages:
   - stageName: Seed
     sprite: {fileID: -1699937938, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: This is the first stage
+    description: A cool-season produce sapling that grows in fair weather, typically
+      planted in the Spring.
     waterRequired: 1
     daysRequired: 1
     minigamesRequired: 1

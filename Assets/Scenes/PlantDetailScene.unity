@@ -276,10 +276,11 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hi
+  m_Text: A cool-season produce plant that grows in fair weather, typically planted
+    in the Spring.
 --- !u!1 &785216912
 GameObject:
   m_ObjectHideFlags: 0
