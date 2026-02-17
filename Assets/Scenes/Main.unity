@@ -4515,7 +4515,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 521119754}
+      - m_Target: {fileID: 178475961}
         m_TargetAssemblyTypeName: Sceneswitcher, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5

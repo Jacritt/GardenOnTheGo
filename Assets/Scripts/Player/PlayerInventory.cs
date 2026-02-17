@@ -25,6 +25,16 @@ public class PlayerInventory : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void AddItem(string plantName, GameObject plantPrefab, int amount)
+    {
+        InventoryItem item = new InventoryItem();
+        item.plantName = plantName;
+        item.plantPrefab = plantPrefab;
+        item.amount = amount;
+        
+        items.Add(item);
+    }
+
     public InventoryItem GetItem(string plantName)
     {
         return items.Find(i => i.plantName == plantName);
