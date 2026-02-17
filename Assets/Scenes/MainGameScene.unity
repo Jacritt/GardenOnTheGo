@@ -931,7 +931,7 @@ MonoBehaviour:
   - {fileID: 4945515250762267257, guid: 6ba7b8fb5f1efeb4294e71353a79f794, type: 3}
   - {fileID: 6035741949325715468, guid: 4044835cf3707794f8ebfa2a9a5cd25f, type: 3}
   miniGameSpawnParent: {fileID: 563766963}
-  startRoundDuration: 6
+  startRoundDuration: 15
   minRoundDuration: 1.2
   difficultyRampPerScore: 0.05
   startingLives: 3
@@ -1114,6 +1114,7 @@ GameObject:
   - component: {fileID: 1555122752}
   - component: {fileID: 1555122751}
   - component: {fileID: 1555122750}
+  - component: {fileID: 1555122754}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1206,6 +1207,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1555122754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555122749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e445e88044b0d9d47b044f58364c79c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moles: []
+  roses: []
 --- !u!1 &1579599566
 GameObject:
   m_ObjectHideFlags: 0
