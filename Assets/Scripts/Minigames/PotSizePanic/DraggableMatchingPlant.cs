@@ -30,8 +30,16 @@ public class DraggableMatchingPlant : MonoBehaviour
     void OnMouseUp()
     {
         isDragging = false;
+        // Start a Coroutine to wait one tiny moment before checking if we should snap back
+        StartCoroutine(SnapBackCheck());
+    }
 
-        // If not placed in a pot by the time the mouse is released, snap back
+    System.Collections.IEnumerator SnapBackCheck()
+    {
+        // Wait for the end of the physics frame so the PotTarget can finish its work
+        yield return new WaitForFixedUpdate();
+
+        // Now, if the pot didn't claim the plant, snap it back
         if (!isPlaced)
         {
             transform.position = startPosition;
