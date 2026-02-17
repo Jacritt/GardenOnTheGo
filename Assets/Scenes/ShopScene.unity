@@ -1712,9 +1712,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 433645777}
+      - m_Target: {fileID: 11500000, guid: 75904f3fdfdfedd47ac779b52d554ef4, type: 3}
         m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: set_interactable
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2274,6 +2274,8 @@ GameObject:
   - component: {fileID: 1413505240}
   - component: {fileID: 1413505239}
   - component: {fileID: 1413505238}
+  - component: {fileID: 1413505242}
+  - component: {fileID: 1413505243}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2356,16 +2358,16 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1422806123}
-  - {fileID: 394102212}
   - {fileID: 1977987716}
   - {fileID: 1845514427}
   - {fileID: 1849793455}
+  - {fileID: 394102212}
   - {fileID: 1838230688}
   - {fileID: 1307193229}
   - {fileID: 433645776}
   - {fileID: 209310951}
   - {fileID: 1796175053}
+  - {fileID: 1422806123}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2373,6 +2375,40 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1413505242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413505237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75904f3fdfdfedd47ac779b52d554ef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buy1: {fileID: 433645777}
+  buy2: {fileID: 209310952}
+  buy3: {fileID: 1796175054}
+  item1StockTxt: {fileID: 1977987717}
+  item2StockTxt: {fileID: 1845514428}
+  item3StockTxt: {fileID: 1849793456}
+  prefab1: {fileID: 4967164015982793778, guid: 7bb227a04f38f724a9a35984cdfafb63, type: 3}
+  prefab2: {fileID: 0}
+  prefab3: {fileID: 0}
+--- !u!114 &1413505243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413505237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4537d0e006984a04bbd5694aa295fbf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
 --- !u!1 &1422806122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,8 +2443,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 105, y: -543}
-  m_SizeDelta: {x: 865.48, y: 91.6}
+  m_AnchoredPosition: {x: 27.06, y: -543}
+  m_SizeDelta: {x: 1021.36, y: 91.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1422806124
 MonoBehaviour:
@@ -2430,9 +2466,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'CURRENT STOCK: 3
-
-'
+  m_text: 'Available money: $NaN'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -4797,7 +4831,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'In Stock: 1'
+  m_text: 'In Stock: 3'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -4931,7 +4965,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'In Stock: 1'
+  m_text: 'In Stock: 3'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -5065,7 +5099,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'In Stock: 1'
+  m_text: 'In Stock: 3'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
