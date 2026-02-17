@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 175029326510790623}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.86, y: 7.96, z: 0.120830305}
+  m_LocalPosition: {x: 10.21, y: 8.08, z: 0.120830305}
   m_LocalScale: {x: 1.9632, y: 1.9632, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2136,21 +2136,21 @@ MonoBehaviour:
   plants:
   - plantObject: {fileID: 2166785728698411442}
     prefersSun: 1
-    stressLevel: 0.5
+    stressLevel: 0
     stressBar: {fileID: 4014061376523717563}
   - plantObject: {fileID: 8383225989374154126}
     prefersSun: 1
-    stressLevel: 0.5
+    stressLevel: 0
     stressBar: {fileID: 8848035003854068308}
   - plantObject: {fileID: 8886065020427891466}
     prefersSun: 0
-    stressLevel: 0.5
+    stressLevel: 0
     stressBar: {fileID: 2195746646765490299}
   - plantObject: {fileID: 8378469224847916435}
     prefersSun: 0
-    stressLevel: 0.5
+    stressLevel: 0
     stressBar: {fileID: 4911999880810727093}
-  stressIncreaseRate: 0.5
+  stressIncreaseRate: 0.2
   sunZoneThreshold: {fileID: 7440058054663155595}
 --- !u!1 &9181345036779893771
 GameObject:

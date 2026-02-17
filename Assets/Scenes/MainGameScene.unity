@@ -933,7 +933,7 @@ MonoBehaviour:
   - {fileID: 9180547686569589684, guid: b45d4ed2fd56ee2408ae7f605b2ff876, type: 3}
   - {fileID: 3005148031559015853, guid: e06b15dcdbbc3dc4e854cc0e5e8623b7, type: 3}
   miniGameSpawnParent: {fileID: 563766963}
-  startRoundDuration: 6
+  startRoundDuration: 15
   minRoundDuration: 1.2
   difficultyRampPerScore: 0.05
   startingLives: 3
