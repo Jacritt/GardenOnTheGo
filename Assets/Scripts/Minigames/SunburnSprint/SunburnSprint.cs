@@ -9,25 +9,20 @@ public class SunburnSprint : MiniGame
     {
         public GameObject plantObject;
         public bool prefersSun; // Check this for sun-loving plants
-        public float stressLevel = 0f;
-        public GameObject stressBar; // Visual feedback
+        public float stressLevel = 0f; // Range 0 to 1
+        public GameObject stressBar; // This should be the BarAnchor
     }
 
+    [Header("Game Settings")]
     public List<PlantData> plants;
     public float stressIncreaseRate = 0.5f;
-    public Transform sunZoneThreshold; // An X-position that divides sun and shade
+    public Transform sunZoneThreshold;
 
     public override void StartGame(float duration)
     {
         base.StartGame(duration);
 
-        // Randomly place plants at the start
-        foreach (var p in plants)
-        {
-            float randomX = Random.Range(-5f, 5f);
-            p.plantObject.transform.localPosition = new Vector3(randomX, 0, 0);
-        }
-
+        // We removed the random placement so your plants stay on the ground
         StartCoroutine(SurvivalCountdown(duration - 0.1f));
     }
 
@@ -37,9 +32,10 @@ public class SunburnSprint : MiniGame
 
         foreach (var p in plants)
         {
+            // 1. Logic Check: Is it in the sun?
             bool isInSun = p.plantObject.transform.position.x > sunZoneThreshold.position.x;
 
-            // STRESS LOGIC
+            // 2. Stress Calculation
             if (isInSun != p.prefersSun)
             {
                 p.stressLevel += stressIncreaseRate * Time.deltaTime;
@@ -49,27 +45,30 @@ public class SunburnSprint : MiniGame
                 p.stressLevel = Mathf.Max(0, p.stressLevel - (stressIncreaseRate * Time.deltaTime));
             }
 
-            // VISUAL FEEDBACK: COLOR TINTING
+            // 3. Visual Feedback: Color Tinting
             SpriteRenderer renderer = p.plantObject.GetComponent<SpriteRenderer>();
             if (renderer != null)
             {
+                // Clamp stress between 0 and 1 for the Lerp function
+                float colorT = Mathf.Clamp01(p.stressLevel);
                 if (p.prefersSun) // Sunflower/Wheat
-                {
-                    // Fade from White to Blue (Cold/Shade stress)
-                    renderer.color = Color.Lerp(Color.white, new Color(0.5f, 0.5f, 1f), p.stressLevel);
-                }
+                    renderer.color = Color.Lerp(Color.white, new Color(0.5f, 0.5f, 1f), colorT);
                 else // Mushrooms
-                {
-                    // Fade from White to a "Crispy" Brown/Orange (Sunburn stress)
-                    renderer.color = Color.Lerp(Color.white, new Color(1f, 0.6f, 0.3f), p.stressLevel);
-                }
+                    renderer.color = Color.Lerp(Color.white, new Color(1f, 0.6f, 0.3f), colorT);
             }
 
-            /// Instead of looking for a SpriteRenderer, we just look for the Transform
+            // 4. Visual Feedback: Stress Bar Scaling
             if (p.stressBar != null)
             {
-                // We scale the X from 0 (empty) to 1 (full)
-                p.stressBar.transform.localScale = new Vector3(p.stressLevel, 1, 1);
+                // We use Clamp01 to make sure the bar doesn't grow past the black container
+                float visualFill = Mathf.Clamp01(p.stressLevel);
+                p.stressBar.transform.localScale = new Vector3(visualFill, 1, 1);
+            }
+
+            // 5. Failure Condition: If any plant reaches 100% stress
+            if (p.stressLevel >= 1.0f)
+            {
+                Fail();
             }
         }
     }
@@ -77,10 +76,9 @@ public class SunburnSprint : MiniGame
     IEnumerator SurvivalCountdown(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        // If we haven't failed by now, we win!
         if (IsActive) Win();
     }
-    void Start()
-    {
-        StartGame(15f); // Tests the game with a 15-second timer
-    }
+
+    // REMOVED: void Start() - The GameManager now triggers the game!
 }
