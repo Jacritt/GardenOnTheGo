@@ -12,5 +12,6 @@ public class Sceneswitcher : MonoBehaviour
     {
         selectedLevel = level;
         SceneManager.LoadScene(sceneName);
+        Debug.Log(sceneName);
     }
 }
