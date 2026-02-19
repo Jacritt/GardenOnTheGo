@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4967164015982793778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1163087969203980090}
+  - component: {fileID: -8371981887700653631}
+  m_Layer: 0
+  m_Name: RedPepperPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1163087969203980090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4967164015982793778}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8371981887700653631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4967164015982793778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed019f9d38a4cb42b0618bcabbf2302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: 
+  prefabSource: {fileID: 0}
+  plantName: Red Pepper
+  growthStages:
+  - stageName: Seedling
+    sprite: {fileID: -1541917059, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
+    description: 
+    waterRequired: 0
+    daysRequired: 0
+    minigamesRequired: 0
+  - stageName: Sapling
+    sprite: {fileID: 1682992259, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
+    description: 
+    waterRequired: 0
+    daysRequired: 0
+    minigamesRequired: 0
+  - stageName: Mature
+    sprite: {fileID: 1906531230, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
+    description: 
+    waterRequired: 0
+    daysRequired: 0
+    minigamesRequired: 0
+  - stageName: Mature Harvest
+    sprite: {fileID: -1291692998, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
+    description: 
+    waterRequired: 0
+    daysRequired: 0
+    minigamesRequired: 0
+  currentStage: 0
+  currentWater: 0
+  currentDays: 0
+  currentMinigames: 0
+  plotId: 
