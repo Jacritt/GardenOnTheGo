@@ -22,7 +22,7 @@ public class PlayerInventory : MonoBehaviour
         else
             Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     public void AddItem(string plantName, GameObject plantPrefab, int amount)

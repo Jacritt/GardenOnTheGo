@@ -40,12 +40,11 @@ public class UserBuyTransaction : MonoBehaviour
             if(val > 0)
                 val -= 1;
             
-            if(val == 0)
+            if(val <= 0)
                 item1StockTxt.text = "Out of Stock!";
             else
                 item1StockTxt.text = oldStock.Substring(0, length-1) + "" + val;
                 PlayerInventory.Instance.AddItem("Red Pepper", prefab1, 1);
-            //
         }
 
         if(buySelect == "Btn2")

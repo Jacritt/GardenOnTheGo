@@ -46,6 +46,8 @@ public class PlantSelectionUI : MonoBehaviour
             Destroy(child.gameObject);
 
         // Create buttons based on inventory
+        Debug.Log("items:");
+        Debug.Log(PlayerInventory.Instance.items);
         foreach (var item in PlayerInventory.Instance.items)
         {
             if (item.amount > 0)
