@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 public class WaterOrWreckIt : MiniGame
 {
+    void Start()
+    {
+        // This starts the game immediately for testing without the GameManager
+        StartGame(10f);
+    }
+
     [System.Serializable]
     public class PotType
     {
@@ -35,38 +41,43 @@ public class WaterOrWreckIt : MiniGame
 
     void SetupRandomPot()
     {
-        // Pick one of the 3 pots
         currentPot = potOptions[Random.Range(0, potOptions.Count)];
 
-        // Disable all pots, then enable the chosen one
         foreach (var p in potOptions) p.potVisual.SetActive(false);
         currentPot.potVisual.SetActive(true);
 
-        // Reset water
+        // This line tells the script: "Find the green zone inside the pot I just turned on"
+        targetZone = currentPot.potVisual.GetComponentInChildren<SpriteRenderer>().gameObject;
+
         currentFillAmount = 0;
         waterFill.transform.localScale = new Vector3(1, 0, 1);
-
-        // Position the Green Zone based on the pot's specific target
-        targetZone.transform.localPosition = new Vector3(0, currentPot.targetRange.x, 0);
     }
 
     void Update()
     {
-        if (!IsActive || !gameActive) return;
+        if (!IsActive) return;
 
-        if (Input.GetMouseButtonDown(0)) isPouring = true;
-        if (Input.GetMouseButtonUp(0)) StopPouring();
+        if (Input.GetMouseButtonDown(0))
+        {
+            isPouring = true;
+            Debug.Log("Pouring Started!");
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            isPouring = false;
+            Debug.Log("Pouring Stopped!");
+            StopPouring();
+        }
 
         if (isPouring)
         {
             currentFillAmount += currentPot.fillSpeed * Time.deltaTime;
-            waterFill.transform.localScale = new Vector3(1, Mathf.Clamp01(currentFillAmount), 1);
 
-            if (currentFillAmount > 1.0f)
+            // This is the line that actually moves the blue square
+            if (waterFill != null)
             {
-                Splash();
-                Fail();
-                gameActive = false;
+                waterFill.transform.localScale = new Vector3(1, currentFillAmount, 1);
             }
         }
     }
@@ -92,4 +103,6 @@ public class WaterOrWreckIt : MiniGame
     {
         if (splashEffect != null) splashEffect.Play();
     }
+
+    
 }
