@@ -3,28 +3,21 @@ using System.Collections.Generic;
 
 public class WaterOrWreckIt : MiniGame
 {
-    void Start()
-    {
-        // This starts the game immediately for testing without the GameManager
-        StartGame(10f);
-    }
-
     [System.Serializable]
     public class PotType
     {
         public string name;
-        public GameObject potVisual; // The actual pot sprite
-        public float fillSpeed;      // Fast for skinny, slow for wide
-        public Vector2 targetRange;  // The min/max fill for the green zone
+        public GameObject potVisual;
+        public float fillSpeed;
+        public Vector2 targetRange;
     }
 
     [Header("Pot Configurations")]
     public List<PotType> potOptions;
-    public Transform potSpawnPoint;
 
     [Header("Water Elements")]
-    public GameObject waterFill;      // The blue sprite (Pivot set to Bottom!)
-    public GameObject targetZone;     // The green bar sprite
+    public GameObject waterFill;
+    public GameObject waterStream;
     public ParticleSystem splashEffect;
 
     private PotType currentPot;
@@ -32,6 +25,7 @@ public class WaterOrWreckIt : MiniGame
     private bool isPouring = false;
     private bool gameActive = false;
 
+    // This is called by the GameManager when the minigame starts
     public override void StartGame(float duration)
     {
         base.StartGame(duration);
@@ -41,43 +35,39 @@ public class WaterOrWreckIt : MiniGame
 
     void SetupRandomPot()
     {
+        // Pick a random pot from your list
         currentPot = potOptions[Random.Range(0, potOptions.Count)];
 
+        // Toggle visuals
         foreach (var p in potOptions) p.potVisual.SetActive(false);
         currentPot.potVisual.SetActive(true);
 
-        // This line tells the script: "Find the green zone inside the pot I just turned on"
-        targetZone = currentPot.potVisual.GetComponentInChildren<SpriteRenderer>().gameObject;
+        // Set water to your exact "Floor" position and width
+        waterFill.transform.position = new Vector3(-0.82f, -4.3765f, 0f);
 
         currentFillAmount = 0;
-        waterFill.transform.localScale = new Vector3(1, 0, 1);
+        waterFill.transform.localScale = new Vector3(6.802f, 0, 1);
     }
 
     void Update()
     {
-        if (!IsActive) return;
+        // Only allow logic if the game is actually running
+        if (!IsActive || !gameActive) return;
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            isPouring = true;
-            Debug.Log("Pouring Started!");
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            isPouring = false;
-            Debug.Log("Pouring Stopped!");
-            StopPouring();
-        }
+        if (Input.GetMouseButtonDown(0)) isPouring = true;
+        if (Input.GetMouseButtonUp(0)) StopPouring();
 
         if (isPouring)
         {
             currentFillAmount += currentPot.fillSpeed * Time.deltaTime;
+            waterFill.transform.localScale = new Vector3(6.802f, currentFillAmount, 1);
 
-            // This is the line that actually moves the blue square
-            if (waterFill != null)
+            // Safety check to prevent infinite filling
+            if (currentFillAmount > 5.0f)
             {
-                waterFill.transform.localScale = new Vector3(1, currentFillAmount, 1);
+                Splash();
+                Fail();
+                gameActive = false;
             }
         }
     }
@@ -87,9 +77,8 @@ public class WaterOrWreckIt : MiniGame
         isPouring = false;
         gameActive = false;
 
-        // Success Check: Is the fill inside the green zone?
-        // Note: You'll need to adjust these numbers based on your sprite sizes
-        if (currentFillAmount >= 0.7f && currentFillAmount <= 0.85f)
+        // Final Range Check
+        if (currentFillAmount >= currentPot.targetRange.x && currentFillAmount <= currentPot.targetRange.y)
         {
             Win();
         }
@@ -103,6 +92,4 @@ public class WaterOrWreckIt : MiniGame
     {
         if (splashEffect != null) splashEffect.Play();
     }
-
-    
 }
