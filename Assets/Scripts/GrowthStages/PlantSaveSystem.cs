@@ -44,14 +44,13 @@ public static class PlantSaveSystem
                 days = p.currentDays,
                 minis = p.currentMinigames
             });
+            Debug.Log($"Saving plant {p.name} with ID {p.UniqueId}");
         }
 
         string json = JsonUtility.ToJson(wrapper);
         PlayerPrefs.SetString(SAVE_KEY, json);
         PlayerPrefs.Save();
-#if UNITY_EDITOR
-    Debug.Log($"[PlantSaveSystem] Saved {wrapper.items.Count} plants.");
-#endif
+        
     }
 
 

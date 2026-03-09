@@ -53,15 +53,13 @@ public class PlotClick : MonoBehaviour
 
         plant.prefabSource = prefab;
         Debug.Log($"[PlotClick] Planting {plantName} with prefab {prefab.name}");
-
+        Debug.Log("Planted plant with ID: " + plant.UniqueId);
 
         // IMPORTANT: ensure unique Save ID exists
         if (string.IsNullOrEmpty(plant.UniqueId))
             plant.UniqueId = System.Guid.NewGuid().ToString();
 
         plant.plotId = plotId;
-
-        DontDestroyOnLoad(plantedInstance);
 
         PlantGameManager.Instance.SetSelectedPlant(plant);
         PlantContext.selectedPlant = plant;
@@ -77,6 +75,13 @@ public class PlotClick : MonoBehaviour
 
         UpdateVisualState(true);
         Debug.Log($"[PlotClick] Plant {plantName} registered and UI updated for plotId {plotId}");
+        plant.OnProgressChanged += HandlePlantChanged;
+    }
+
+    private void HandlePlantChanged(Plant plant)
+    {
+        if (plantImage != null)
+            plantImage.sprite = plant.GetStage()?.sprite;
     }
 
     private void OnEnable()
@@ -85,11 +90,11 @@ public class PlotClick : MonoBehaviour
         {
             plantedInstance = plant.gameObject;
 
-            PlantContext.selectedPlant = plant;
-            PlantGameManager.Instance.selectedPlant = plant;
+            plant.OnProgressChanged -= HandlePlantChanged;
+            plant.OnProgressChanged += HandlePlantChanged;
 
             if (plantImage != null)
-                plantImage.sprite = plant.prefabSource.GetComponent<Plant>().GetStage()?.sprite;
+                plantImage.sprite = plant.GetStage()?.sprite;
 
             UpdateVisualState(true);
         }
@@ -117,7 +122,7 @@ public class PlotClick : MonoBehaviour
             plantedInstance = plant.gameObject;
 
             if (plantImage != null)
-                plantImage.sprite = plant.prefabSource.GetComponent<Plant>().GetStage()?.sprite;
+                plantImage.sprite = plant.GetStage()?.sprite;
 
             UpdateVisualState(true);
         }
