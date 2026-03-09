@@ -40,11 +40,8 @@ public class Plant : MonoBehaviour
 
     private void Awake()
     {
-        // Ensure unique id exists (persisted to the serialized field so it remains between runs in editor builds).
-        if (string.IsNullOrEmpty(uniqueId))
-        {
-            uniqueId = Guid.NewGuid().ToString();
-        }
+        // Always generate a new ID for runtime instances
+        uniqueId = Guid.NewGuid().ToString();
     }
 
     public GrowthStage GetStage()

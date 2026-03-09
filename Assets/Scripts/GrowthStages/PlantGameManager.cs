@@ -37,24 +37,17 @@ public class PlantGameManager : MonoBehaviour
 
     private void Start()
     {
-        // find all plants in scene if not pre-assigned
-        /*if (allPlants == null || allPlants.Length == 0)
-        {
-            allPlants = FindObjectsOfType<Plant>();
-        }*/
+        allPlants = FindObjectsOfType<Plant>(true);
 
         BuildLookup();
-
-        // load saved data
         PlantSaveSystem.LoadInto(plantById);
-
-        // Rebuild mapping from plotId ? Plant
         RebuildPlotMapping();
 
-        // Subscribe to OnProgressChanged events for all plants
         foreach (var p in allPlants)
         {
             if (p == null) continue;
+
+            p.OnProgressChanged -= OnPlantProgressChanged;
             p.OnProgressChanged += OnPlantProgressChanged;
         }
     }
@@ -74,7 +67,11 @@ public class PlantGameManager : MonoBehaviour
             if (!plantById.ContainsKey(p.UniqueId))
                 plantById[p.UniqueId] = p;
             else
-                Debug.LogWarning($"Duplicate plant id {p.UniqueId} on {p.name}; consider setting unique ids in inspector.");
+            {
+                Debug.LogWarning($"Duplicate plant id detected! Generating new one.");
+                p.UniqueId = Guid.NewGuid().ToString();
+                plantById[p.UniqueId] = p;
+            }
         }
     }
 
@@ -82,7 +79,7 @@ public class PlantGameManager : MonoBehaviour
     {
         plantsByPlot.Clear();
 
-        foreach (var p in FindObjectsOfType<Plant>())
+        foreach (var p in FindObjectsOfType<Plant>(true))
         {
             if (!string.IsNullOrEmpty(p.plotId))
             {
@@ -91,9 +88,10 @@ public class PlantGameManager : MonoBehaviour
             }
         }
 
-        foreach (var plot in FindObjectsOfType<PlotClick>())
+        foreach (var plot in FindObjectsOfType<PlotClick>(true))
         {
             plot.RefreshFromManager();
+            Debug.Log($"[PlotClick] Mapping plot {plot.plotId} to plant {plot.name} (ID {plot.plotId})");
         }
 
     }
@@ -103,8 +101,11 @@ public class PlantGameManager : MonoBehaviour
         // broadcast to any listeners
         OnAnyPlantChanged?.Invoke(p);
 
+        if (p == selectedPlant)
+            OnSelectedPlantChanged?.Invoke(p);
+
         // autosave
-        PlantSaveSystem.SaveAll(allPlants);
+        PlantSaveSystem.SaveAll(FindObjectsOfType<Plant>());
     }
 
     public void SetSelectedPlant(Plant p)
@@ -134,10 +135,11 @@ public class PlantGameManager : MonoBehaviour
         PlantContext.selectedPlant = p;
 
         // Subscribe to autosave updates
+        p.OnProgressChanged -= OnPlantProgressChanged;
         p.OnProgressChanged += OnPlantProgressChanged;
 
         // Save immediately
-        PlantSaveSystem.SaveAll(allPlants);
+        PlantSaveSystem.SaveAll(FindObjectsOfType<Plant>());
     }
 
     public Plant GetPlantById(string id)
@@ -153,39 +155,42 @@ public class PlantGameManager : MonoBehaviour
     {
         if (target == null) return;
         target.AddWater(amount);
-        OnPlantProgressChanged(target);
+        
     }
 
     public void AddWaterToAll(int amount = 1)
     {
         foreach (var p in allPlants)
-            if (p != null) AddWater(p ,amount);
+            if (p != null) 
+                p.AddWater(amount);
     }
 
     public void AddMinigame(Plant target, int amount = 1)
     {
         if (target == null) return;
         target.AddMinigame(amount);
-        OnPlantProgressChanged(target);
+       
     }
 
     public void AddMinigameToAll(int amount = 1)
     {
         foreach (var p in allPlants)
-            if (p != null) AddMinigame(p, amount);
+            if (p != null) 
+                p.AddMinigame(amount);
     }
 
     public void AddDay(Plant target, int amount = 1)
     {
         if (target == null) return;
         target.AddDay(amount);
-        OnPlantProgressChanged(target);
+        
     }
 
     public void AddDayToAll(int amount = 1)
     {
         foreach (var p in allPlants)
-            if (p != null) AddDay(p,amount);
+            if (p != null) 
+                p.AddDay(amount);
     }
 
     #endregion
@@ -193,6 +198,6 @@ public class PlantGameManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         // final save
-        PlantSaveSystem.SaveAll(allPlants);
+        PlantSaveSystem.SaveAll(FindObjectsOfType<Plant>());
     }
 }

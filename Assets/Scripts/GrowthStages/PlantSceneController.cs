@@ -21,32 +21,29 @@ public class PlantSceneController : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("PlantSceneController received plant: " + current);
+        current = PlantGameManager.Instance?.selectedPlant;
 
-        // 1. Try context
-        var inst = PlantContext.selectedPlant;
-        if (inst != null)
-            current = inst.prefabSource.GetComponent<Plant>();  // Use prefab version
-
-        // FAIL
         if (current == null)
         {
-            Debug.LogError("PlantSceneController: no plant selected!");
+            Debug.LogError("No selected plant for details scene.");
             ClearUI();
             return;
         }
 
-        // Init UI
+        current.OnProgressChanged += HandlePlantChanged;
         UpdateUI();
+    }
+
+    private void HandlePlantChanged(Plant p)
+    {
+        if (p == current)
+            UpdateUI();
     }
 
     private void OnDisable()
     {
-        if (PlantGameManager.Instance != null)
-        {
-            PlantGameManager.Instance.OnSelectedPlantChanged -= HandleSelectedPlantChanged;
-            PlantGameManager.Instance.OnAnyPlantChanged -= HandleAnyPlantChanged;
-        }
+        if (current != null)
+            current.OnProgressChanged -= HandlePlantChanged;
     }
 
     private void HandleSelectedPlantChanged(Plant p)
@@ -109,10 +106,16 @@ public class PlantSceneController : MonoBehaviour
 
     public void UpgradePlant()
     {
-        if (current == null) return;
+        if (current == null)
+        {
+            Debug.LogError("Upgrade: current is null");
+            return;
+        }
+
+        Debug.Log($"Upgrading plant {current.plantName} with ID {current.UniqueId}");
+
         if (current.Upgrade())
         {
-            // maybe a little animation / feedback could go here
             PlantSaveSystem.SaveAll(PlantGameManager.Instance.allPlants);
             UpdateUI();
         }
