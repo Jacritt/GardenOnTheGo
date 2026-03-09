@@ -1,26 +1,33 @@
-// DayButton.cs
+﻿// DayButton.cs
 using UnityEngine;
 
 public class DaysPast : MonoBehaviour
 {
-    public Plant targetPlant;
     public bool applyToAll = false;
 
     public void AddDay()
     {
-        if (applyToAll)
+        if (PlantGameManager.Instance == null)
         {
-            PlantGameManager.Instance?.AddDayToAll();
+            Debug.LogError("DaysPast: PlantGameManager missing!");
             return;
         }
 
-        Plant p = targetPlant ?? PlantGameManager.Instance?.selectedPlant;
-        if (p == null)
+        if (applyToAll)
         {
-            Debug.LogError("DayButton: no target and no selected plant!");
+            PlantGameManager.Instance.AddDayToAll();
             return;
         }
+
+        Plant p = PlantGameManager.Instance.selectedPlant;
+
+        if (p == null)
+        {
+            Debug.LogError("DaysPast: no selected plant!");
+            return;
+        }
+
         PlantGameManager.Instance.AddDay(p);
-        Debug.Log($"Added day to {p.plantName}. Total: {p.currentDays}");
+        Debug.Log($"Added day to plant instance {p.UniqueId} ({p.plantName}) → Days: {p.currentDays}");
     }
 }
