@@ -1435,7 +1435,7 @@ MonoBehaviour:
     plantPrefab: {fileID: 2563559418803734473, guid: 76d901df9cd19b84eaa425d08a5382f2, type: 3}
     amount: 1
   - plantName: Potato
-    plantPrefab: {fileID: 2608960265325764219, guid: f238df9d4c8888c49b03d7e5ef1a2c6b, type: 3}
+    plantPrefab: {fileID: 6049984188416731766, guid: a5adff4996367f84fb9a755042240c4c, type: 3}
     amount: 1
   - plantName: Grapes
     plantPrefab: {fileID: 5349653273893596929, guid: 95d66b3e22f758c4e8ac83bc53105b37, type: 3}
@@ -1456,7 +1456,7 @@ MonoBehaviour:
     plantPrefab: {fileID: 4786295729594790347, guid: b09717a4202c92441a795b46c1896dc1, type: 3}
     amount: 1
   - plantName: Lemon Tree
-    plantPrefab: {fileID: 8407481068504343101, guid: cbbfad7ee5d69b941a8f4117b775e4a8, type: 3}
+    plantPrefab: {fileID: 4627054214175977774, guid: 1433d1877c7e5774aaa0855cf5848e9a, type: 3}
     amount: 1
   - plantName: Plum Tree
     plantPrefab: {fileID: 5127436215206138064, guid: 9c97ba7a149e37d499a7919e8661b02c, type: 3}
