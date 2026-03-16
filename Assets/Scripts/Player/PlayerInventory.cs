@@ -35,6 +35,12 @@ public class PlayerInventory : MonoBehaviour
         items.Add(item);
     }
 
+    public void IncItem(string plantName)
+    {
+        InventoryItem item = items.Find(i => i.plantName == plantName);
+        item.amount = item.amount + 1;
+    }
+
     public InventoryItem GetItem(string plantName)
     {
         return items.Find(i => i.plantName == plantName);

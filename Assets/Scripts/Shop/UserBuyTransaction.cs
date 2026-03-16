@@ -36,15 +36,25 @@ public class UserBuyTransaction : MonoBehaviour
             
             int val = oldStock[length-1] - '0';
             Debug.Log(val);
-
-            if(val > 0)
-                val -= 1;
             
             if(val <= 0)
                 item1StockTxt.text = "Out of Stock!";
             else
-                item1StockTxt.text = oldStock.Substring(0, length-1) + "" + val;
-                PlayerInventory.Instance.AddItem("Red Pepper", prefab1, 1);
+            {
+                if(PlayerInventory.Instance.HasItem("Red Pepper"))
+                    PlayerInventory.Instance.IncItem("Red Pepper");
+                else
+                    PlayerInventory.Instance.AddItem("Red Pepper", prefab1, 1);
+            }
+
+            if(val > 0)
+            {
+                val -= 1;
+                if(val == 0)
+                    item1StockTxt.text = "Out of Stock!";
+                else
+                    item1StockTxt.text = oldStock.Substring(0, length-1) + "" + val;
+            }
         }
 
         if(buySelect == "Btn2")
@@ -56,13 +66,24 @@ public class UserBuyTransaction : MonoBehaviour
             int val = oldStock[length-1] - '0';
             Debug.Log(val);
 
-            if(val > 0)
-                val -= 1;
-
-            if(val == 0)
+            if(val <= 0)
                 item2StockTxt.text = "Out of Stock!";
             else
-                item2StockTxt.text = oldStock.Substring(0, length-1) + "" + val;
+            {
+                if(PlayerInventory.Instance.HasItem("Potato"))
+                    PlayerInventory.Instance.IncItem("Potato");
+                else
+                    PlayerInventory.Instance.AddItem("Potato", prefab2, 1);
+            }
+
+            if(val > 0)
+            {
+                val -= 1;
+                if(val == 0)
+                    item2StockTxt.text = "Out of Stock!";
+                else
+                    item2StockTxt.text = oldStock.Substring(0, length-1) + "" + val;
+            }
         }
 
         if(buySelect == "Btn3")
@@ -73,14 +94,25 @@ public class UserBuyTransaction : MonoBehaviour
             
             int val = oldStock[length-1] - '0';
             Debug.Log(val);
-
-            if(val > 0)
-                val -= 1;
             
-            if(val == 0)
+            if(val <= 0)
                 item3StockTxt.text = "Out of Stock!";
             else
-                item3StockTxt.text = oldStock.Substring(0, length-1) + "" + val;
+            {
+                if(PlayerInventory.Instance.HasItem("Lemon Tree"))
+                    PlayerInventory.Instance.IncItem("Lemon Tree");
+                else
+                    PlayerInventory.Instance.AddItem("Lemon Tree", prefab3, 1);
+            }
+
+            if(val > 0)
+            {
+                val -= 1;
+                if(val == 0)
+                    item3StockTxt.text = "Out of Stock!";
+                else
+                    item3StockTxt.text = oldStock.Substring(0, length-1) + "" + val;
+            }
         }
         // TODO: Reference number in stock text ("In Stock: XX")
         //       Add plant type bought to player inventory

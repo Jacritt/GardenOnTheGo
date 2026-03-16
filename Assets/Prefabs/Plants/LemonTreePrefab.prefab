@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7621646902824633834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2634297718946486231}
+  - component: {fileID: 4056983755277073954}
+  m_Layer: 0
+  m_Name: LemonTreePrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2634297718946486231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621646902824633834}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4056983755277073954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621646902824633834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed019f9d38a4cb42b0618bcabbf2302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: 
+  prefabSource: {fileID: 0}
+  plantName: Lemon Tree
+  growthStages:
+  - stageName: Sapling 1
+    sprite: {fileID: 1852994363, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
+    description: 
+    waterRequired: 0
+    daysRequired: 0
+    minigamesRequired: 0
+  - stageName: Sapling 2
+    sprite: {fileID: -221561487, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
+    description: 
+    waterRequired: 0
+    daysRequired: 0
+    minigamesRequired: 0
+  - stageName: Sapling 3
+    sprite: {fileID: -1435563149, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
+    description: 
+    waterRequired: 0
+    daysRequired: 0
+    minigamesRequired: 0
+  - stageName: Adult
+    sprite: {fileID: -2097895959, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
+    description: 
+    waterRequired: 0
+    daysRequired: 0
+    minigamesRequired: 0
+  - stageName: Adult Harvest
+    sprite: {fileID: 2077028166, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
+    description: 
+    waterRequired: 0
+    daysRequired: 0
+    minigamesRequired: 0
+  currentStage: 0
+  currentWater: 0
+  currentDays: 0
+  currentMinigames: 0
+  plotId: 
