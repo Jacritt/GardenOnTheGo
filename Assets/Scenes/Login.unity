@@ -1419,6 +1419,48 @@ MonoBehaviour:
   - plantName: Beetroot
     plantPrefab: {fileID: 5748753836977211478, guid: 5a4c26204622b2c4a8a557cfc3e0ef97, type: 3}
     amount: 1
+  - plantName: Sunflower
+    plantPrefab: {fileID: 2380776262386763950, guid: 73d10315e7132b042995fe4385f7a759, type: 3}
+    amount: 1
+  - plantName: Red Pepper
+    plantPrefab: {fileID: 4967164015982793778, guid: 7bb227a04f38f724a9a35984cdfafb63, type: 3}
+    amount: 1
+  - plantName: Cauliflower
+    plantPrefab: {fileID: 571201047814831242, guid: d848ccc24f2b7ab4f907d9758af53374, type: 3}
+    amount: 1
+  - plantName: Brown Mushroom
+    plantPrefab: {fileID: 3689950073221679414, guid: 1ad1d886e140575458de6e030e48b402, type: 3}
+    amount: 1
+  - plantName: White Mushroom
+    plantPrefab: {fileID: 2563559418803734473, guid: 76d901df9cd19b84eaa425d08a5382f2, type: 3}
+    amount: 1
+  - plantName: Potato
+    plantPrefab: {fileID: 2608960265325764219, guid: f238df9d4c8888c49b03d7e5ef1a2c6b, type: 3}
+    amount: 1
+  - plantName: Grapes
+    plantPrefab: {fileID: 5349653273893596929, guid: 95d66b3e22f758c4e8ac83bc53105b37, type: 3}
+    amount: 1
+  - plantName: Cucumbers
+    plantPrefab: {fileID: 3919070536777358725, guid: b66b267094f064f4f81201685bdd71cc, type: 3}
+    amount: 1
+  - plantName: Green Beans
+    plantPrefab: {fileID: 8141359431763558314, guid: 371e0d469d6423e4fb16b48b51bbbd40, type: 3}
+    amount: 1
+  - plantName: Wheat
+    plantPrefab: {fileID: 984192756368997850, guid: 66318d4aa9f12844f9231b18fada3541, type: 3}
+    amount: 1
+  - plantName: Banana Tree
+    plantPrefab: {fileID: 475550370713812705, guid: f0d65f1ed9df0bd42bcde9c059f0c2d6, type: 3}
+    amount: 1
+  - plantName: Coconut Tree
+    plantPrefab: {fileID: 4786295729594790347, guid: b09717a4202c92441a795b46c1896dc1, type: 3}
+    amount: 1
+  - plantName: Lemon Tree
+    plantPrefab: {fileID: 8407481068504343101, guid: cbbfad7ee5d69b941a8f4117b775e4a8, type: 3}
+    amount: 1
+  - plantName: Plum Tree
+    plantPrefab: {fileID: 5127436215206138064, guid: 9c97ba7a149e37d499a7919e8661b02c, type: 3}
+    amount: 1
 --- !u!4 &671657207
 Transform:
   m_ObjectHideFlags: 0
