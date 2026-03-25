@@ -928,13 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miniGamePrefabs:
-  - {fileID: 4945515250762267257, guid: 6ba7b8fb5f1efeb4294e71353a79f794, type: 3}
-  - {fileID: 3122867053922046832, guid: 6e0e446255af89e4892c128cae2ecacb, type: 3}
-  - {fileID: 3005148031559015853, guid: e06b15dcdbbc3dc4e854cc0e5e8623b7, type: 3}
-  - {fileID: 9180547686569589684, guid: b45d4ed2fd56ee2408ae7f605b2ff876, type: 3}
-  - {fileID: 6671274987105314391, guid: 533f169b5cb9cf546844b68df8b3610f, type: 3}
-  - {fileID: 6035741949325715468, guid: 4044835cf3707794f8ebfa2a9a5cd25f, type: 3}
-  - {fileID: 5449898107764340824, guid: 041aad9f90fd31c4eadd9169589bb6ed, type: 3}
+  - {fileID: 4363992674341515121, guid: bf1e4059b68fdce409bb065b1ea48259, type: 3}
   miniGameSpawnParent: {fileID: 563766963}
   startRoundDuration: 15
   minRoundDuration: 1.2
