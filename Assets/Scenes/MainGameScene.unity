@@ -932,6 +932,7 @@ MonoBehaviour:
   - {fileID: 3005148031559015853, guid: e06b15dcdbbc3dc4e854cc0e5e8623b7, type: 3}
   - {fileID: 6035741949325715468, guid: 4044835cf3707794f8ebfa2a9a5cd25f, type: 3}
   - {fileID: 9077297817101070702, guid: 52c13413dfed9264c91a1e0efb32bf8c, type: 3}
+  - {fileID: 4363992674341515121, guid: bf1e4059b68fdce409bb065b1ea48259, type: 3}
   miniGameSpawnParent: {fileID: 563766963}
   startRoundDuration: 15
   minRoundDuration: 1.2
