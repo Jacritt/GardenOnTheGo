@@ -48,14 +48,37 @@ public class PlantSelectionUI : MonoBehaviour
         // Create buttons based on inventory
         Debug.Log("items:");
         Debug.Log(PlayerInventory.Instance.items);
+        PlayerInventory.Instance.items.RemoveAll(i => i.amount <= 0);
         foreach (var item in PlayerInventory.Instance.items)
         {
             if (item.amount > 0)
             {
-                GameObject btn = Instantiate(buttonTemplate, buttonContainer);
+                GameObject btn = Instantiate(buttonTemplate, buttonContainer, false);
                 btn.SetActive(true);
 
-                btn.GetComponentInChildren<TMP_Text>().text = item.plantName + " (" + item.amount + ")";
+                Transform iconTransform = btn.transform.Find("Icon");
+                Transform amountTransform = btn.transform.Find("AmountText");
+                Transform nameTransform = btn.transform.Find("NameText");
+
+                if (iconTransform == null || amountTransform == null)
+                {
+                    Debug.LogError("Icon or AmountText missing on ButtonTemplate!");
+                    continue;
+                }
+
+                Image icon = iconTransform.GetComponent<Image>();
+                TMP_Text amountText = amountTransform.GetComponent<TMP_Text>();
+                TMP_Text nameText = nameTransform.GetComponent<TMP_Text>();
+
+                if (icon == null || amountText == null)
+                {
+                    Debug.LogError("Missing Image or TMP_Text component!");
+                    continue;
+                }
+
+                icon.sprite = item.icon;
+                amountText.text = item.amount.ToString();
+                nameText.text = item.plantName;
 
                 btn.GetComponent<Button>().onClick.AddListener(() =>
                 {
@@ -65,6 +88,7 @@ public class PlantSelectionUI : MonoBehaviour
                 });
             }
         }
+        Debug.Log("Inventory count: " + PlayerInventory.Instance.items.Count);
     }
 
     public void Close()

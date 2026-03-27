@@ -7,6 +7,8 @@ public class InventoryItem
     public string plantName;
     public GameObject plantPrefab;
     public int amount;
+
+    public Sprite icon;
 }
 
 public class PlayerInventory : MonoBehaviour
@@ -25,14 +27,24 @@ public class PlayerInventory : MonoBehaviour
         //DontDestroyOnLoad(gameObject);
     }
 
-    public void AddItem(string plantName, GameObject plantPrefab, int amount)
+    public void AddItem(string plantName, GameObject plantPrefab, Sprite icon, int amount)
     {
-        InventoryItem item = new InventoryItem();
-        item.plantName = plantName;
-        item.plantPrefab = plantPrefab;
-        item.amount = amount;
-        
-        items.Add(item);
+        InventoryItem existingItem = items.Find(i => i.plantName == plantName);
+
+        if (existingItem != null)
+        {
+            existingItem.amount += amount;
+        }
+        else
+        {
+            InventoryItem item = new InventoryItem();
+            item.plantName = plantName;
+            item.plantPrefab = plantPrefab;
+            item.amount = amount;
+            item.icon = icon;
+
+            items.Add(item);
+        }
     }
 
     public void IncItem(string plantName)
