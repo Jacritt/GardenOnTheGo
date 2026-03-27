@@ -5,6 +5,7 @@ using TMPro;
 public class PlantSelectionUI : MonoBehaviour
 {
     public static PlantSelectionUI Instance;
+    private bool isPlantingMode = false;
 
     public GameObject panel;
     public Transform buttonContainer;
@@ -36,19 +37,19 @@ public class PlantSelectionUI : MonoBehaviour
             buttonTemplate.SetActive(false);
     }
 
-    public void Open(PlotClick plot)
+    public void Open(PlotClick plot = null)
     {
         activePlot = plot;
+        isPlantingMode = (plot != null); // planting mode only if a plot is passed
+
         panel.SetActive(true);
 
         // Clear previous buttons
         foreach (Transform child in buttonContainer)
             Destroy(child.gameObject);
 
-        // Create buttons based on inventory
-        Debug.Log("items:");
-        Debug.Log(PlayerInventory.Instance.items);
         PlayerInventory.Instance.items.RemoveAll(i => i.amount <= 0);
+
         foreach (var item in PlayerInventory.Instance.items)
         {
             if (item.amount > 0)
@@ -60,35 +61,35 @@ public class PlantSelectionUI : MonoBehaviour
                 Transform amountTransform = btn.transform.Find("AmountText");
                 Transform nameTransform = btn.transform.Find("NameText");
 
-                if (iconTransform == null || amountTransform == null)
-                {
-                    Debug.LogError("Icon or AmountText missing on ButtonTemplate!");
-                    continue;
-                }
-
                 Image icon = iconTransform.GetComponent<Image>();
                 TMP_Text amountText = amountTransform.GetComponent<TMP_Text>();
                 TMP_Text nameText = nameTransform.GetComponent<TMP_Text>();
-
-                if (icon == null || amountText == null)
-                {
-                    Debug.LogError("Missing Image or TMP_Text component!");
-                    continue;
-                }
 
                 icon.sprite = item.icon;
                 amountText.text = item.amount.ToString();
                 nameText.text = item.plantName;
 
-                btn.GetComponent<Button>().onClick.AddListener(() =>
+                Button button = btn.GetComponent<Button>();
+
+                // ?? KEY CHANGE HERE
+                button.onClick.RemoveAllListeners();
+
+                if (isPlantingMode)
                 {
-                    activePlot.Plant(item.plantPrefab, item.plantName);
-                    PlayerInventory.Instance.UseItem(item.plantName);
-                    Close();
-                });
+                    button.onClick.AddListener(() =>
+                    {
+                        activePlot.Plant(item.plantPrefab, item.plantName);
+                        PlayerInventory.Instance.UseItem(item.plantName);
+                        Close();
+                    });
+                }
+                else
+                {
+                    // View-only mode ? do nothing (or optional UI feedback)
+                    button.interactable = false; // optional: visually disable
+                }
             }
         }
-        Debug.Log("Inventory count: " + PlayerInventory.Instance.items.Count);
     }
 
     public void Close()
