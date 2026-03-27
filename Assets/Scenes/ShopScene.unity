@@ -2681,8 +2681,11 @@ MonoBehaviour:
   item2StockTxt: {fileID: 1845514428}
   item3StockTxt: {fileID: 1849793456}
   prefab1: {fileID: 4967164015982793778, guid: 7bb227a04f38f724a9a35984cdfafb63, type: 3}
-  prefab2: {fileID: 6290957081898751196, guid: c9d004b7284144b43a4969d02ae4dfe1, type: 3}
-  prefab3: {fileID: 7621646902824633834, guid: 1433d1877c7e5774aaa0855cf5848e9a, type: 3}
+  prefab2: {fileID: 6049984188416731766, guid: a5adff4996367f84fb9a755042240c4c, type: 3}
+  prefab3: {fileID: 4627054214175977774, guid: 1433d1877c7e5774aaa0855cf5848e9a, type: 3}
+  icon1: {fileID: -1291692998, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
+  icon2: {fileID: -1824192565, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
+  icon3: {fileID: 2077028166, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
 --- !u!114 &1413505243
 MonoBehaviour:
   m_ObjectHideFlags: 0

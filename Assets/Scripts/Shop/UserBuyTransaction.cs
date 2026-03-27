@@ -10,6 +10,7 @@ public class UserBuyTransaction : MonoBehaviour
     public Button buy1, buy2, buy3;
     public TMP_Text item1StockTxt, item2StockTxt, item3StockTxt;
     public GameObject prefab1, prefab2, prefab3;
+    public Sprite icon1, icon2, icon3;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +45,7 @@ public class UserBuyTransaction : MonoBehaviour
                 if(PlayerInventory.Instance.HasItem("Red Pepper"))
                     PlayerInventory.Instance.IncItem("Red Pepper");
                 else
-                    PlayerInventory.Instance.AddItem("Red Pepper", prefab1, 1);
+                    PlayerInventory.Instance.AddItem("Red Pepper", prefab1, icon1, 1);
             }
 
             if(val > 0)
@@ -73,7 +74,7 @@ public class UserBuyTransaction : MonoBehaviour
                 if(PlayerInventory.Instance.HasItem("Potato"))
                     PlayerInventory.Instance.IncItem("Potato");
                 else
-                    PlayerInventory.Instance.AddItem("Potato", prefab2, 1);
+                    PlayerInventory.Instance.AddItem("Potato", prefab2, icon2, 1);
             }
 
             if(val > 0)
@@ -102,7 +103,7 @@ public class UserBuyTransaction : MonoBehaviour
                 if(PlayerInventory.Instance.HasItem("Lemon Tree"))
                     PlayerInventory.Instance.IncItem("Lemon Tree");
                 else
-                    PlayerInventory.Instance.AddItem("Lemon Tree", prefab3, 1);
+                    PlayerInventory.Instance.AddItem("Lemon Tree", prefab3, icon3, 1);
             }
 
             if(val > 0)
