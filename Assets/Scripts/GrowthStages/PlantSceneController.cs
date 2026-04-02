@@ -149,6 +149,8 @@ public class PlantSceneController : MonoBehaviour
     {
         Debug.Log($"Harvesting plant {current.plantName} ({current.UniqueId})");
 
+        PlayerInventory.Instance.AddItem(current.plantName, 1);
+
         string plotId = current.plotId;
 
         // Remove from manager tracking

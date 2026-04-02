@@ -5,70 +5,40 @@ using UnityEngine;
 public class InventoryItem
 {
     public string plantName;
+    [TextArea(3, 5)] // Makes it easier to type descriptions in the Inspector
+    public string description;
     public GameObject plantPrefab;
     public int amount;
-
     public Sprite icon;
+    public bool isDiscovered; // New: Tracks if it should show in the Botany Book
 }
 
 public class PlayerInventory : MonoBehaviour
 {
     public static PlayerInventory Instance;
-
     public List<InventoryItem> items = new List<InventoryItem>();
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-
-        //DontDestroyOnLoad(gameObject);
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
-    public void AddItem(string plantName, GameObject plantPrefab, Sprite icon, int amount)
-    {
-        InventoryItem existingItem = items.Find(i => i.plantName == plantName);
-
-        if (existingItem != null)
-        {
-            existingItem.amount += amount;
-        }
-        else
-        {
-            InventoryItem item = new InventoryItem();
-            item.plantName = plantName;
-            item.plantPrefab = plantPrefab;
-            item.amount = amount;
-            item.icon = icon;
-
-            items.Add(item);
-        }
-    }
-
-    public void IncItem(string plantName)
+    public void AddItem(string plantName, int amount)
     {
         InventoryItem item = items.Find(i => i.plantName == plantName);
-        item.amount = item.amount + 1;
+
+        if (item != null)
+        {
+            item.amount += amount;
+            item.isDiscovered = true; // Mark as found
+            Debug.Log($"Harvested {amount} {plantName}(s). Total: {item.amount}");
+        }
+        else
+        {
+            Debug.LogWarning($"Plant {plantName} not found in Inventory Database!");
+        }
     }
 
-    public InventoryItem GetItem(string plantName)
-    {
-        return items.Find(i => i.plantName == plantName);
-    }
-
-    public bool HasItem(string plantName)
-    {
-        InventoryItem item = GetItem(plantName);
-        return item != null && item.amount > 0;
-    }
-
-    public void UseItem(string plantName)
-    {
-        InventoryItem item = GetItem(plantName);
-        if (item != null && item.amount > 0)
-            item.amount--;
-    }
+    public InventoryItem GetItem(string plantName) => items.Find(i => i.plantName == plantName);
 }
-
