@@ -5,12 +5,12 @@ using UnityEngine;
 public class InventoryItem
 {
     public string plantName;
-    [TextArea(3, 5)] // Makes it easier to type descriptions in the Inspector
+    [TextArea(3, 5)]
     public string description;
     public GameObject plantPrefab;
     public int amount;
     public Sprite icon;
-    public bool isDiscovered; // New: Tracks if it should show in the Botany Book
+    public bool isDiscovered;
 }
 
 public class PlayerInventory : MonoBehaviour
@@ -24,21 +24,45 @@ public class PlayerInventory : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    // --- NEW BOTANY BOOK LOGIC ---
     public void AddItem(string plantName, int amount)
     {
         InventoryItem item = items.Find(i => i.plantName == plantName);
-
         if (item != null)
         {
             item.amount += amount;
-            item.isDiscovered = true; // Mark as found
-            Debug.Log($"Harvested {amount} {plantName}(s). Total: {item.amount}");
-        }
-        else
-        {
-            Debug.LogWarning($"Plant {plantName} not found in Inventory Database!");
+            item.isDiscovered = true;
         }
     }
 
-    public InventoryItem GetItem(string plantName) => items.Find(i => i.plantName == plantName);
+    // --- ADDED BACK FOR TEAMMATES (Fixes all 10 errors) ---
+
+    // Fixes "No overload for AddItem takes 4 arguments"
+    public void AddItem(string plantName, GameObject prefab, Sprite icon, int amount)
+    {
+        AddItem(plantName, amount); // Just redirects to the new version
+    }
+
+    // Fixes "Does not contain a definition for HasItem"
+    public bool HasItem(string plantName)
+    {
+        InventoryItem item = items.Find(i => i.plantName == plantName);
+        return item != null && item.amount > 0;
+    }
+
+    // Fixes "Does not contain a definition for IncItem"
+    public void IncItem(string plantName)
+    {
+        AddItem(plantName, 1);
+    }
+
+    // Fixes "Does not contain a definition for UseItem"
+    public void UseItem(string plantName)
+    {
+        InventoryItem item = items.Find(i => i.plantName == plantName);
+        if (item != null && item.amount > 0)
+        {
+            item.amount--;
+        }
+    }
 }
