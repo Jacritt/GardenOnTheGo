@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test.unity
     guid: 4cc2b62415039a64b9db59c5f818c1b6
+  - enabled: 1
+    path: Assets/Scenes/BotanyBook.unity
+    guid: 692d73474686d0f4b94bd1ba1122db3b
   m_configObjects: {}
