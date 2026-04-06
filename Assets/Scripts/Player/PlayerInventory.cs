@@ -11,6 +11,11 @@ public class InventoryItem
     public int amount;
     public Sprite icon;
     public bool isDiscovered;
+
+    [Header("Visuals")]
+    public Sprite[] growthStageSprites; // Array of 3 sprites (Seed, Sprout, Mature)
+    public int maxStageReached = -1;    // -1 = Not found, 0 = Seed, 1 = Sprout, 2 = Mature
+    public bool isCompleted;
 }
 
 public class PlayerInventory : MonoBehaviour
