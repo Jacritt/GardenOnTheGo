@@ -203,7 +203,6 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 --- !u!1 &555656577
 =======
 --- !u!1 &570841447
@@ -547,8 +546,6 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 =======
 >>>>>>> parent of 4e50e8d (Plant UI screen updates)
-=======
->>>>>>> parent of 4e50e8d (Plant UI screen updates)
 --- !u!1 &717926672
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,7 +839,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Carrot
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1 &848698831
@@ -1196,8 +1192,6 @@ CanvasRenderer:
   m_GameObject: {fileID: 998372117}
 >>>>>>> main
   m_CullTransparentMesh: 1
-=======
->>>>>>> parent of 4e50e8d (Plant UI screen updates)
 =======
 >>>>>>> parent of 4e50e8d (Plant UI screen updates)
 --- !u!1 &1016088557
@@ -1625,7 +1619,6 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
-<<<<<<< HEAD
 --- !u!114 &1221312715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1898,8 +1891,6 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 =======
 >>>>>>> main
-=======
->>>>>>> parent of 4e50e8d (Plant UI screen updates)
 =======
 >>>>>>> parent of 4e50e8d (Plant UI screen updates)
 --- !u!1 &1353167086
