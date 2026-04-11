@@ -29,4 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BotanyBook.unity
     guid: 692d73474686d0f4b94bd1ba1122db3b
+  - enabled: 1
+    path: Assets/Scenes/BotanyBook2.unity
+    guid: 6e48edd214641c849b1a5549cc5d4f53
+  - enabled: 1
+    path: Assets/Scenes/BotanyBook3.unity
+    guid: f6dae9bf3e6171a40be7af10d2716abb
+  - enabled: 1
+    path: Assets/Scenes/BotanyBook4.unity
+    guid: efb0f19598768af469c2fdc8e79ef3d2
   m_configObjects: {}
