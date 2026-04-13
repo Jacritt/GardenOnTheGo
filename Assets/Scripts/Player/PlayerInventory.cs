@@ -10,7 +10,7 @@ public class InventoryItem
     public GameObject plantPrefab;
     public int amount;
     public Sprite icon;
-    public bool isDiscovered;
+    public bool isDiscovered; // This will now ONLY be flipped by the Harvest function
 
     [Header("Visuals")]
     public Sprite[] growthStageSprites; // Array of 3 sprites (Seed, Sprout, Mature)
@@ -29,39 +29,53 @@ public class PlayerInventory : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    // --- NEW BOTANY BOOK LOGIC ---
+    // --- UPDATED LOGIC ---
+    // This adds the item to your count but DOES NOT reveal it in the book
     public void AddItem(string plantName, int amount)
     {
         InventoryItem item = items.Find(i => i.plantName == plantName);
         if (item != null)
         {
             item.amount += amount;
-            item.isDiscovered = true;
+            // Removed isDiscovered from here so planting doesn't trigger the book!
         }
     }
 
-    // --- ADDED BACK FOR TEAMMATES (Fixes all 10 errors) ---
-
-    // Fixes "No overload for AddItem takes 4 arguments"
-    public void AddItem(string plantName, GameObject prefab, Sprite icon, int amount)
+    // --- NEW HARVEST LOGIC ---
+    // CALL THIS FUNCTION from your Harvest script/button to reveal the plant in the book
+    public void DiscoverPlant(string plantName)
     {
-        AddItem(plantName, amount); // Just redirects to the new version
+        InventoryItem item = items.Find(i => i.plantName == plantName);
+        if (item != null)
+        {
+            item.isDiscovered = true;
+
+            // Also sets it to 'Mature' stage since it was harvested
+            if (item.maxStageReached < 2) item.maxStageReached = 2;
+
+            item.isCompleted = true; // Adds the stamp
+            Debug.Log(plantName + " has been officially discovered and harvested!");
+        }
     }
 
-    // Fixes "Does not contain a definition for HasItem"
+    // --- LEGACY SUPPORT FOR TEAMMATES ---
+
+    public void AddItem(string plantName, GameObject prefab, Sprite icon, int amount)
+    {
+        AddItem(plantName, amount);
+    }
+
     public bool HasItem(string plantName)
     {
         InventoryItem item = items.Find(i => i.plantName == plantName);
         return item != null && item.amount > 0;
     }
 
-    // Fixes "Does not contain a definition for IncItem"
     public void IncItem(string plantName)
     {
         AddItem(plantName, 1);
     }
 
-    // Fixes "Does not contain a definition for UseItem"
     public void UseItem(string plantName)
     {
         InventoryItem item = items.Find(i => i.plantName == plantName);
