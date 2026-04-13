@@ -149,6 +149,12 @@ public class PlantSceneController : MonoBehaviour
     {
         Debug.Log($"Harvesting plant {current.plantName} ({current.UniqueId})");
 
+        // 1. Adds the item count to inventory (stays hidden in book)
+        PlayerInventory.Instance.AddItem(current.plantName, 1);
+
+        // 2. UNLOCKS the silhouette in the Botany Book
+        PlayerInventory.Instance.DiscoverPlant(current.plantName);
+
         string plotId = current.plotId;
 
         // Remove from manager tracking
@@ -162,7 +168,7 @@ public class PlantSceneController : MonoBehaviour
         // Destroy the plant object
         Destroy(current.gameObject);
 
-        // Save updated state
+        // Save updated state so the plant stays gone when they reload
         PlantSaveSystem.SaveAll(PlantGameManager.Instance.allPlants);
 
         // Return to garden

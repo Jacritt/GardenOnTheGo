@@ -54,7 +54,7 @@ MonoBehaviour:
       planted in the Spring.
     waterRequired: 1
     daysRequired: 1
-    minigamesRequired: 1
+    minigamesRequired: 0
   currentStage: 0
   currentWater: 0
   currentDays: 0
