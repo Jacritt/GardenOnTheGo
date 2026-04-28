@@ -1943,10 +1943,10 @@ RectTransform:
   - {fileID: 570841448}
   m_Father: {fileID: 1050237838}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 171.06, y: 31.999}
-  m_SizeDelta: {x: 106.8688, y: 43.1693}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 171.06, y: -175.001}
+  m_SizeDelta: {x: 106.8688, y: 43.169296}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &998372119
 MonoBehaviour:
@@ -3668,11 +3668,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantImage: {fileID: 1016088560}
-  plantNameText: {fileID: 0}
+  plantNameText: {fileID: 943676401}
   descriptionText: {fileID: 717926675}
-  waterText: {fileID: 0}
+  waterText: {fileID: 545032877}
   daysText: {fileID: 1849425989}
-  minigamesText: {fileID: 0}
+  minigamesText: {fileID: 561376955}
   upgradeButton: {fileID: 1567959978}
   harvestButton: {fileID: 998372119}
   gardenSceneName: Main
