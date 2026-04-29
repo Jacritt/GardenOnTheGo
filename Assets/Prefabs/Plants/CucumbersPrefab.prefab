@@ -50,25 +50,25 @@ MonoBehaviour:
   growthStages:
   - stageName: Seed
     sprite: {fileID: 533496731, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A vine-grown crop known for its cool, watery interior.
     waterRequired: 1
     daysRequired: 1
     minigamesRequired: 1
   - stageName: Sapling
     sprite: {fileID: -219918698, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A fast-growing plant that produces smooth or bumpy fruits.
     waterRequired: 2
     daysRequired: 2
     minigamesRequired: 2
   - stageName: Mature
     sprite: {fileID: -1473352694, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A trailing plant that develops elongated, juicy produce.
     waterRequired: 3
     daysRequired: 3
     minigamesRequired: 3
   - stageName: Mature Harvest
     sprite: {fileID: -750621617, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A long, green vegetable with a crisp texture and refreshing taste.
     waterRequired: 4
     daysRequired: 4
     minigamesRequired: 4

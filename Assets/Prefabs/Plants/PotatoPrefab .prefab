@@ -50,19 +50,19 @@ MonoBehaviour:
   growthStages:
   - stageName: Seed
     sprite: {fileID: 210767925, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A starchy root crop that grows as thick tubers underground.
     waterRequired: 1
     daysRequired: 1
     minigamesRequired: 1
   - stageName: Sapling
     sprite: {fileID: 2034656183, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A root vegetable that stores energy in its underground form.
     waterRequired: 2
     daysRequired: 2
     minigamesRequired: 2
   - stageName: Mature
     sprite: {fileID: -1824192565, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A plant that produces multiple edible tubers beneath the soil.
     waterRequired: 3
     daysRequired: 3
     minigamesRequired: 3

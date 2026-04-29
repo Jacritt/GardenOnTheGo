@@ -50,31 +50,31 @@ MonoBehaviour:
   growthStages:
   - stageName: Seed
     sprite: {fileID: 604110038, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A versatile tree whose fruit is used for food, oil, and drink.
     waterRequired: 1
     daysRequired: 1
     minigamesRequired: 1
   - stageName: Sapling
     sprite: {fileID: -1877859604, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A tree known for its fibrous fruit filled with water and flesh.
     waterRequired: 2
     daysRequired: 2
     minigamesRequired: 2
   - stageName: Adult
     sprite: {fileID: 1849161012, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A tall palm that produces large, hard-shelled coconuts.
     waterRequired: 3
     daysRequired: 3
     minigamesRequired: 3
   - stageName: 'Mature '
     sprite: {fileID: -1631282083, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A towering plant with long leaves and clustered fruit near the top.
     waterRequired: 4
     daysRequired: 4
     minigamesRequired: 4
   - stageName: Mature Harvest
     sprite: {fileID: 824644817, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A sturdy palm that produces round, nutrient-rich coconuts.
     waterRequired: 4
     daysRequired: 4
     minigamesRequired: 4

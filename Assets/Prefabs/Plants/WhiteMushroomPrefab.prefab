@@ -50,19 +50,19 @@ MonoBehaviour:
   growthStages:
   - stageName: Seed
     sprite: {fileID: 1647403572, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A pale fungus known for its simple taste and versatility.
     waterRequired: 1
     daysRequired: 1
     minigamesRequired: 1
   - stageName: Sapling
     sprite: {fileID: 339774350, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A small, soft crop that grows in clusters and matures quickly.
     waterRequired: 2
     daysRequired: 2
     minigamesRequired: 2
   - stageName: Mature
     sprite: {fileID: 934045454, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A common edible mushroom used widely in many dishes.
     waterRequired: 3
     daysRequired: 3
     minigamesRequired: 3

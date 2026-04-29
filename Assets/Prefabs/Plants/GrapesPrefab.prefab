@@ -50,25 +50,25 @@ MonoBehaviour:
   growthStages:
   - stageName: Seed
     sprite: {fileID: 1323047048, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A fruit vine known for its dense clusters and smooth skin.
     waterRequired: 1
     daysRequired: 1
     minigamesRequired: 1
   - stageName: Sapling
     sprite: {fileID: 353824361, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A climbing plant that produces bunches of soft, juicy berries.
     waterRequired: 2
     daysRequired: 2
     minigamesRequired: 2
   - stageName: Mature
     sprite: {fileID: 1588646652, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A sweet crop commonly used for juice, wine, or fresh eating.
     waterRequired: 3
     daysRequired: 3
     minigamesRequired: 3
   - stageName: Mature Harvest
     sprite: {fileID: 1990249223, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A versatile plant that yields both fresh fruit and processed goods.
     waterRequired: 4
     daysRequired: 4
     minigamesRequired: 4

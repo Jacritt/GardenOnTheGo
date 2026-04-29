@@ -50,28 +50,28 @@ MonoBehaviour:
   growthStages:
   - stageName: Seedling
     sprite: {fileID: -1541917059, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
-    waterRequired: 0
-    daysRequired: 0
-    minigamesRequired: 0
+    description: A versatile vegetable used in cooking for both flavor and color.
+    waterRequired: 1
+    daysRequired: 1
+    minigamesRequired: 1
   - stageName: Sapling
     sprite: {fileID: 1682992259, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
-    waterRequired: 0
-    daysRequired: 0
-    minigamesRequired: 0
+    description: A fruiting plant that develops from green to fully ripe red peppers.
+    waterRequired: 2
+    daysRequired: 2
+    minigamesRequired: 2
   - stageName: Mature
     sprite: {fileID: 1906531230, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
-    waterRequired: 0
-    daysRequired: 0
-    minigamesRequired: 0
+    description: A colorful plant that produces hollow fruits with seeds inside.
+    waterRequired: 3
+    daysRequired: 3
+    minigamesRequired: 3
   - stageName: Mature Harvest
     sprite: {fileID: -1291692998, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
-    waterRequired: 0
-    daysRequired: 0
-    minigamesRequired: 0
+    description: A bright vegetable known for its sweet flavor and crisp texture.
+    waterRequired: 4
+    daysRequired: 4
+    minigamesRequired: 4
   currentStage: 0
   currentWater: 0
   currentDays: 0

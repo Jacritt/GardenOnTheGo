@@ -50,19 +50,20 @@ MonoBehaviour:
   growthStages:
   - stageName: Seed
     sprite: {fileID: -1778728022, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A vibrant underground crop that prefers moist soil and moderate
+      temperatures.
     waterRequired: 1
     daysRequired: 1
     minigamesRequired: 1
   - stageName: Sappling
     sprite: {fileID: -1415884004, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A root crop that develops a smooth, round base beneath the soil.
     waterRequired: 2
     daysRequired: 2
     minigamesRequired: 2
   - stageName: Mature
     sprite: {fileID: 453449325, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A dense vegetable that stores sugars in its underground bulb.
     waterRequired: 3
     daysRequired: 3
     minigamesRequired: 3

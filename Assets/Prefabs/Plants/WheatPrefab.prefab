@@ -50,25 +50,25 @@ MonoBehaviour:
   growthStages:
   - stageName: Seed
     sprite: {fileID: -1390030464, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A grain plant that produces edible seeds used for flour.
     waterRequired: 1
     daysRequired: 1
     minigamesRequired: 1
   - stageName: Sapling
     sprite: {fileID: -435781093, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A tall grass that grows in clusters and produces seed heads.
     waterRequired: 2
     daysRequired: 2
     minigamesRequired: 2
   - stageName: Mature
     sprite: {fileID: -1352682053, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A widely grown crop valued for its nutritional grains.
     waterRequired: 3
     daysRequired: 3
     minigamesRequired: 3
   - stageName: Mature Harvest
     sprite: {fileID: -804816766, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A field crop harvested for its golden heads of grain.
     waterRequired: 4
     daysRequired: 4
     minigamesRequired: 4
