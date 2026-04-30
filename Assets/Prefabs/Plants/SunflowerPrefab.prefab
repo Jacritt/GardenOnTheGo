@@ -50,25 +50,25 @@ MonoBehaviour:
   growthStages:
   - stageName: Seed
     sprite: {fileID: 723095464, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A bold plant valued for both its beauty and seed production.
     waterRequired: 1
     daysRequired: 1
     minigamesRequired: 1
   - stageName: Sapling
     sprite: {fileID: -831396454, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A towering bloom that stands out in gardens and fields.
     waterRequired: 2
     daysRequired: 2
     minigamesRequired: 2
   - stageName: Mature
     sprite: {fileID: -1826407542, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A plant that produces edible seeds in its large flower head.
     waterRequired: 3
     daysRequired: 3
     minigamesRequired: 3
   - stageName: Mature Harvest
     sprite: {fileID: 1260909462, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A tall plant with a large, round flower that faces the sun.
     waterRequired: 4
     daysRequired: 4
     minigamesRequired: 4

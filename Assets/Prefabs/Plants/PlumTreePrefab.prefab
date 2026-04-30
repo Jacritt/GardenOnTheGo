@@ -50,31 +50,31 @@ MonoBehaviour:
   growthStages:
   - stageName: Seed
     sprite: {fileID: -360365690, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A garden tree valued for its blossoms and edible harvest.
     waterRequired: 1
     daysRequired: 1
     minigamesRequired: 1
   - stageName: Sapling
     sprite: {fileID: 892938722, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A seasonal plant that yields colorful, round fruits.
     waterRequired: 2
     daysRequired: 2
     minigamesRequired: 2
   - stageName: Adult
     sprite: {fileID: -2019516462, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A flowering plant that develops sweet or tart stone fruits.
     waterRequired: 3
     daysRequired: 3
     minigamesRequired: 3
   - stageName: 'Mature '
     sprite: {fileID: -1638011612, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A tree known for its soft-fleshed fruit with a central pit.
     waterRequired: 4
     daysRequired: 4
     minigamesRequired: 4
   - stageName: Mature Harvest
     sprite: {fileID: -2054720952, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A fruit tree that produces small, juicy fruits with smooth skin.
     waterRequired: 4
     daysRequired: 4
     minigamesRequired: 4

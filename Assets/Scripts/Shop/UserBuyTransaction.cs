@@ -14,6 +14,7 @@ public class UserBuyTransaction : MonoBehaviour
     public GameObject prefab1, prefab2, prefab3;
     public GameObject item1Sprite, item2Sprite, item3Sprite;
     public TMP_Text stockTxt;
+    public Sprite icon1, icon2, icon3;
 
     // Start is called before the first frame update
     private void Awake()

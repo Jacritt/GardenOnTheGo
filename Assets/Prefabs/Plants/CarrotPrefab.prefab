@@ -57,13 +57,15 @@ MonoBehaviour:
     minigamesRequired: 1
   - stageName: Sapling
     sprite: {fileID: 1205743080, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: This is the second
+    description: A root vegetable that grows underground, best planted in cool seasons
+      like spring or fall.
     waterRequired: 2
     daysRequired: 2
     minigamesRequired: 2
   - stageName: Mature
     sprite: {fileID: -1144708191, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: This the Third
+    description: A simple garden vegetable that thrives in mild temperatures and
+      soft soil conditions.
     waterRequired: 3
     daysRequired: 3
     minigamesRequired: 3

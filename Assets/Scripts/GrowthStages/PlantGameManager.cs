@@ -9,7 +9,7 @@ public class PlantGameManager : MonoBehaviour
     public static PlantGameManager Instance { get; private set; }
 
     [Tooltip("All plant instances currently present (will be populated automatically at Start if left empty).")]
-    public Plant[] allPlants; // optional pre-assign, otherwise auto-find at Start
+    public List<Plant> allPlants = new List<Plant>(); // optional pre-assign, otherwise auto-find at Start
 
     // fast lookup by UniqueId
     public Dictionary<string, Plant> plantById = new Dictionary<string, Plant>();
@@ -37,7 +37,7 @@ public class PlantGameManager : MonoBehaviour
 
     private void Start()
     {
-        allPlants = FindObjectsOfType<Plant>(true);
+        allPlants = new List<Plant>(FindObjectsOfType<Plant>(true));
 
         BuildLookup();
         PlantSaveSystem.LoadInto(plantById);
@@ -105,7 +105,7 @@ public class PlantGameManager : MonoBehaviour
             OnSelectedPlantChanged?.Invoke(p);
 
         // autosave
-        PlantSaveSystem.SaveAll(FindObjectsOfType<Plant>());
+        PlantSaveSystem.SaveAll(allPlants);
     }
 
     public void SetSelectedPlant(Plant p)
@@ -117,10 +117,8 @@ public class PlantGameManager : MonoBehaviour
 
     public void RegisterPlant(Plant p)
     {
-        // Expand allPlants array
-        var list = new List<Plant>(allPlants);
-        list.Add(p);
-        allPlants = list.ToArray();
+        if (!allPlants.Contains(p))
+            allPlants.Add(p);
 
         // Add to dictionary
         if (!string.IsNullOrEmpty(p.UniqueId) && !plantById.ContainsKey(p.UniqueId))
@@ -139,7 +137,7 @@ public class PlantGameManager : MonoBehaviour
         p.OnProgressChanged += OnPlantProgressChanged;
 
         // Save immediately
-        PlantSaveSystem.SaveAll(FindObjectsOfType<Plant>());
+        PlantSaveSystem.SaveAll(allPlants);
     }
 
     public Plant GetPlantById(string id)
@@ -198,6 +196,6 @@ public class PlantGameManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         // final save
-        PlantSaveSystem.SaveAll(FindObjectsOfType<Plant>());
+        PlantSaveSystem.SaveAll(allPlants);
     }
 }

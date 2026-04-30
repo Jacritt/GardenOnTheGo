@@ -106,4 +106,11 @@ public class Plant : MonoBehaviour
         OnProgressChanged?.Invoke(this);
         Debug.Log($"[Plant] Applied save to {gameObject.name}: Stage {stage}, Water {water}, Days {days}, Minis {minis}");
     }
+    public bool IsFinalStage()
+    {
+        if (growthStages == null || growthStages.Length == 0)
+            return false;
+
+        return currentStage >= growthStages.Length - 1;
+    }
 }

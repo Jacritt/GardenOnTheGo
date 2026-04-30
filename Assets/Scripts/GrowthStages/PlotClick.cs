@@ -6,7 +6,7 @@ public class PlotClick : MonoBehaviour
 {
     [Header("UI")]
     public Image plotButtonImage;
-    public Image plantImage;
+    public Image[] plantImages;
     public TMPro.TextMeshProUGUI plotButtonText;
 
     public string plotId;
@@ -18,8 +18,14 @@ public class PlotClick : MonoBehaviour
         if (plotButtonImage != null)
             plotButtonImage.enabled = !hasPlant; // Show background only when no plant
 
-        if (plantImage != null)
-            plantImage.enabled = hasPlant; // Show plant image only when planted
+        if (plantImages != null)
+        {
+            foreach (Image img in plantImages)
+            {
+                if (img != null)
+                    img.enabled = hasPlant;
+            }
+        } // Show plant image only when planted
 
         if (plotButtonText != null)
             plotButtonText.enabled = !hasPlant;
@@ -70,8 +76,14 @@ public class PlotClick : MonoBehaviour
         PlantGameManager.Instance.plantsByPlot[plotId] = plant;
         // Update the plot's button UI to match the plant stage
         var stage = plant.GetStage();
-        if (plantImage != null && stage != null)
-            plantImage.sprite = stage.sprite;
+        if (plantImages != null && stage != null)
+        {
+            foreach (Image img in plantImages)
+            {
+                if (img != null)
+                    img.sprite = stage.sprite;
+            }
+        }
 
         UpdateVisualState(true);
         Debug.Log($"[PlotClick] Plant {plantName} registered and UI updated for plotId {plotId}");
@@ -80,8 +92,16 @@ public class PlotClick : MonoBehaviour
 
     private void HandlePlantChanged(Plant plant)
     {
-        if (plantImage != null)
-            plantImage.sprite = plant.GetStage()?.sprite;
+        var sprite = plant.GetStage()?.sprite;
+
+        if (plantImages != null)
+        {
+            foreach (Image img in plantImages)
+            {
+                if (img != null)
+                    img.sprite = sprite;
+            }
+        }
     }
 
     private void OnEnable()
@@ -93,8 +113,16 @@ public class PlotClick : MonoBehaviour
             plant.OnProgressChanged -= HandlePlantChanged;
             plant.OnProgressChanged += HandlePlantChanged;
 
-            if (plantImage != null)
-                plantImage.sprite = plant.GetStage()?.sprite;
+            var sprite = plant.GetStage()?.sprite;
+
+            if (plantImages != null)
+            {
+                foreach (Image img in plantImages)
+                {
+                    if (img != null)
+                        img.sprite = sprite;
+                }
+            }
 
             UpdateVisualState(true);
         }
@@ -121,8 +149,16 @@ public class PlotClick : MonoBehaviour
         {
             plantedInstance = plant.gameObject;
 
-            if (plantImage != null)
-                plantImage.sprite = plant.GetStage()?.sprite;
+            var sprite = plant.GetStage()?.sprite;
+
+            if (plantImages != null)
+            {
+                foreach (Image img in plantImages)
+                {
+                    if (img != null)
+                        img.sprite = sprite;
+                }
+            }
 
             UpdateVisualState(true);
         }

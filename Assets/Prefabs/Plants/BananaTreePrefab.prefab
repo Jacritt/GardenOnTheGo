@@ -50,31 +50,31 @@ MonoBehaviour:
   growthStages:
   - stageName: Seed
     sprite: {fileID: 265106437, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A large plant that produces long clusters of soft, sweet fruit.
     waterRequired: 1
     daysRequired: 1
     minigamesRequired: 1
   - stageName: Sapling
     sprite: {fileID: -1587989108, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A fast-growing plant known for its curved, yellow fruit.
     waterRequired: 2
     daysRequired: 2
     minigamesRequired: 2
   - stageName: Adult
     sprite: {fileID: 828339198, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A tall, leafy plant with wide leaves and hanging fruit bunches.
     waterRequired: 3
     daysRequired: 3
     minigamesRequired: 3
   - stageName: 'Mature '
     sprite: {fileID: 617728022, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A tropical-looking plant with thick stems and broad foliage.
     waterRequired: 4
     daysRequired: 4
     minigamesRequired: 4
   - stageName: Mature Harvest
     sprite: {fileID: -1666534345, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
-    description: 
+    description: A fruit-bearing plant that produces energy-rich bananas in bunches.
     waterRequired: 4
     daysRequired: 4
     minigamesRequired: 4

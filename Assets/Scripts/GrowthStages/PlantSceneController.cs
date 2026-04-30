@@ -13,6 +13,7 @@ public class PlantSceneController : MonoBehaviour
     public Text daysText;
     public Text minigamesText;
     public Button upgradeButton;
+    public Button harvestButton;
 
     [Header("Return")]
     public string gardenSceneName = "Main";
@@ -85,7 +86,24 @@ public class PlantSceneController : MonoBehaviour
         daysText.text = $"Days: {current.currentDays}/{(stage?.daysRequired ?? 0)}";
         minigamesText.text = $"Minigames: {current.currentMinigames}/{(stage?.minigamesRequired ?? 0)}";
 
-        upgradeButton.gameObject.SetActive(current.RequirementsMet());
+        bool ready = current.RequirementsMet();
+        bool isFinal = current.IsFinalStage();
+
+        // Hide both first (important)
+        upgradeButton.gameObject.SetActive(false);
+        harvestButton.gameObject.SetActive(false);
+
+        if (ready)
+        {
+            if (isFinal)
+            {
+                harvestButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                upgradeButton.gameObject.SetActive(true);
+            }
+        }
     }
 
     private void ClearUI()
@@ -114,10 +132,46 @@ public class PlantSceneController : MonoBehaviour
 
         Debug.Log($"Upgrading plant {current.plantName} with ID {current.UniqueId}");
 
+        if (current.IsFinalStage())
+        {
+            HarvestPlant();
+            return;
+        }
+
         if (current.Upgrade())
         {
             PlantSaveSystem.SaveAll(PlantGameManager.Instance.allPlants);
             UpdateUI();
         }
+    }
+
+    private void HarvestPlant()
+    {
+        Debug.Log($"Harvesting plant {current.plantName} ({current.UniqueId})");
+
+        // 1. Adds the item count to inventory (stays hidden in book)
+        PlayerInventory.Instance.AddItem(current.plantName, 1);
+
+        // 2. UNLOCKS the silhouette in the Botany Book
+        PlayerInventory.Instance.DiscoverPlant(current.plantName);
+
+        string plotId = current.plotId;
+
+        // Remove from manager tracking
+        if (PlantGameManager.Instance.plantsByPlot.ContainsKey(plotId))
+        {
+            PlantGameManager.Instance.plantsByPlot.Remove(plotId);
+        }
+
+        PlantGameManager.Instance.allPlants.Remove(current);
+
+        // Destroy the plant object
+        Destroy(current.gameObject);
+
+        // Save updated state so the plant stays gone when they reload
+        PlantSaveSystem.SaveAll(PlantGameManager.Instance.allPlants);
+
+        // Return to garden
+        SceneManager.LoadScene(gardenSceneName);
     }
 }
