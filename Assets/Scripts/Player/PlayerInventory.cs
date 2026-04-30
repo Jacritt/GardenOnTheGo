@@ -22,6 +22,7 @@ public class PlayerInventory : MonoBehaviour
 {
     public static PlayerInventory Instance;
     public List<InventoryItem> items = new List<InventoryItem>();
+    public int playerMoney = 100;
 
     private void Awake()
     {
@@ -84,4 +85,20 @@ public class PlayerInventory : MonoBehaviour
             item.amount--;
         }
     }
+
+    public void incCurrency(int amount)
+    {
+        playerMoney += amount;
+    }
+
+    public void deductCurrency(int amount)
+    {
+        playerMoney -= amount;
+    }
+
+    public int getCurrency()
+    {
+        return playerMoney;
+    }
 }
+
