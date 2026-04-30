@@ -388,6 +388,7 @@ MonoBehaviour:
   - plantName: Beetroot
     plantPrefab: {fileID: 5748753836977211478, guid: 5a4c26204622b2c4a8a557cfc3e0ef97, type: 3}
     amount: 1
+  playerMoney: 100
 --- !u!1 &1159673855
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +422,7 @@ Transform:
   - {fileID: 1987869983}
   - {fileID: 47320378}
   - {fileID: 1106806885}
+  - {fileID: 1971109820}
   - {fileID: 24110974}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -714,6 +716,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817823009}
   m_CullTransparentMesh: 1
+--- !u!1 &1971109819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1971109820}
+  - component: {fileID: 1971109821}
+  m_Layer: 0
+  m_Name: ShopInventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1971109820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971109819}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -591.23956, y: -465.6292, z: -2.5210133}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1159673856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1971109821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971109819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9def8b57af750f47915e1264ab85ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopStock:
+  - plantName: Red Pepper
+    plantPrefab: {fileID: 4967164015982793778, guid: 7bb227a04f38f724a9a35984cdfafb63, type: 3}
+    quantity: 3
+    cost: 10
+  - plantName: Potato
+    plantPrefab: {fileID: 6049984188416731766, guid: a5adff4996367f84fb9a755042240c4c, type: 3}
+    quantity: 3
+    cost: 10
+  - plantName: Lemon Tree
+    plantPrefab: {fileID: 4627054214175977774, guid: 1433d1877c7e5774aaa0855cf5848e9a, type: 3}
+    quantity: 3
+    cost: 10
+  - plantName: Beetroot
+    plantPrefab: {fileID: 5748753836977211478, guid: 5a4c26204622b2c4a8a557cfc3e0ef97, type: 3}
+    quantity: 3
+    cost: 10
+  - plantName: Carrot
+    plantPrefab: {fileID: 1672645118631681119, guid: 138e264a2efb30c4bbb5412cb5ef097b, type: 3}
+    quantity: 3
+    cost: 10
+  - plantName: Grapes
+    plantPrefab: {fileID: 5349653273893596929, guid: 95d66b3e22f758c4e8ac83bc53105b37, type: 3}
+    quantity: 3
+    cost: 10
 --- !u!1 &1987869982
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +832,6 @@ MonoBehaviour:
   panel: {fileID: 1817823009}
   buttonContainer: {fileID: 1260318718}
   buttonTemplate: {fileID: 1327583103082373417, guid: b2164a01bccc03e47a4dc81570fb35b2, type: 3}
-  mainCanvas: {fileID: 252118686}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

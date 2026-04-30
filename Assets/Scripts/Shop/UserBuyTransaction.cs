@@ -8,112 +8,111 @@ public class UserBuyTransaction : MonoBehaviour
 {
     public static UserBuyTransaction Instance;
     public Button buy1, buy2, buy3;
+    public TMP_Text item1Name, item2Name, item3Name;
     public TMP_Text item1StockTxt, item2StockTxt, item3StockTxt;
+    public int item1Stock, item2Stock, item3Stock;
     public GameObject prefab1, prefab2, prefab3;
+    public GameObject item1Sprite, item2Sprite, item3Sprite;
+    public TMP_Text stockTxt;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        if (Instance == null)
+        { Instance = this; }
+        // else if (Instance != this)
+        // { Destroy(gameObject); }
+
+        DontDestroyOnLoad(gameObject);
+    }
+    
     void Start()
     {
-        buy1.onClick.AddListener(delegate {decrementStock("Btn1"); });
-        buy2.onClick.AddListener(delegate {decrementStock("Btn2"); });
-        buy3.onClick.AddListener(delegate {decrementStock("Btn3"); });
+        // Declare shop vars
+        ShopItem[] currStock = ShopInventory.Instance.reStock();
+
+        prefab1 = currStock[0].plantPrefab; 
+        prefab2 = currStock[1].plantPrefab; 
+        prefab3 = currStock[2].plantPrefab;
+
+        Debug.Log(prefab1);
+        Debug.Log(prefab2);
+        Debug.Log(prefab3);
+
+        item1Stock = currStock[0].quantity; 
+        item2Stock = currStock[1].quantity; 
+        item3Stock = currStock[2].quantity;
+
+        Debug.Log(item1Stock);
+        Debug.Log(item1Stock);
+        Debug.Log(item1Stock);
+
+        item1Name.text = currStock[0].plantName;
+        item2Name.text = currStock[1].plantName;
+        item3Name.text = currStock[2].plantName;
+
+    //    item1Sprite.sprite = currStock[0].plantPrefab.
+        
+
+        buy1.onClick.AddListener(delegate {decrementStock(currStock[0]); });
+        buy2.onClick.AddListener(delegate {decrementStock(currStock[1]); });
+        buy3.onClick.AddListener(delegate {decrementStock(currStock[2]); });
     }
 
     // Update is called once per frame
     void Update()
     {
+        ShopItem[] currStock = ShopInventory.Instance.reStock();
 
+        prefab1 = currStock[0].plantPrefab; 
+        prefab2 = currStock[1].plantPrefab; 
+        prefab3 = currStock[2].plantPrefab;
+
+        item1Stock = currStock[0].quantity; 
+        item2Stock = currStock[1].quantity; 
+        item3Stock = currStock[2].quantity;
+
+        item1Name.text = currStock[0].plantName.ToUpper();
+        item2Name.text = currStock[1].plantName.ToUpper();
+        item3Name.text = currStock[2].plantName.ToUpper();
+
+        item1StockTxt.text = "IN STOCK: " + item1Stock;
+        item2StockTxt.text = "IN STOCK: " + item2Stock;
+        item3StockTxt.text = "IN STOCK: " + item3Stock;
+
+        item1Sprite.GetComponent<SpriteRenderer>().sprite = currStock[0].plantSprite;
+        item2Sprite.GetComponent<SpriteRenderer>().sprite = currStock[1].plantSprite;
+        item3Sprite.GetComponent<SpriteRenderer>().sprite = currStock[2].plantSprite;
+
+        string stockTxtSpliced = stockTxt.text;
+        stockTxt.text = stockTxtSpliced.Substring(0,18) + " " + PlayerInventory.Instance.getCurrency();
     }
 
     // Trigger via BUY button click
-    public void decrementStock(string buySelect)
+    public void decrementStock(ShopItem toBuy)
     {
-        if(buySelect == "Btn1")
-        { 
-            Debug.Log("BUY 1 CLICKED");
-            string oldStock = item1StockTxt.text;
-            int length = oldStock.Length;
-            
-            int val = oldStock[length-1] - '0';
-            Debug.Log(val);
-            
-            if(val <= 0)
-                item1StockTxt.text = "Out of Stock!";
-            else
-            {
-                if(PlayerInventory.Instance.HasItem("Red Pepper"))
-                    PlayerInventory.Instance.IncItem("Red Pepper");
-                else
-                    PlayerInventory.Instance.AddItem("Red Pepper", prefab1, 1);
-            }
-
-            if(val > 0)
-            {
-                val -= 1;
-                if(val == 0)
-                    item1StockTxt.text = "Out of Stock!";
-                else
-                    item1StockTxt.text = oldStock.Substring(0, length-1) + "" + val;
-            }
-        }
-
-        if(buySelect == "Btn2")
-        { 
-            Debug.Log("BUY 2 CLICKED");
-            string oldStock = item2StockTxt.text;
-            int length = oldStock.Length;
-            
-            int val = oldStock[length-1] - '0';
-            Debug.Log(val);
-
-            if(val <= 0)
-                item2StockTxt.text = "Out of Stock!";
-            else
-            {
-                if(PlayerInventory.Instance.HasItem("Potato"))
-                    PlayerInventory.Instance.IncItem("Potato");
-                else
-                    PlayerInventory.Instance.AddItem("Potato", prefab2, 1);
-            }
-
-            if(val > 0)
-            {
-                val -= 1;
-                if(val == 0)
-                    item2StockTxt.text = "Out of Stock!";
-                else
-                    item2StockTxt.text = oldStock.Substring(0, length-1) + "" + val;
-            }
-        }
-
-        if(buySelect == "Btn3")
+        
+        int val = toBuy.quantity;
+        
+        if(val > 0)
         {
-            Debug.Log("BUY 3 CLICKED");
-            string oldStock = item3StockTxt.text;
-            int length = oldStock.Length;
-            
-            int val = oldStock[length-1] - '0';
-            Debug.Log(val);
-            
-            if(val <= 0)
-                item3StockTxt.text = "Out of Stock!";
+            if(PlayerInventory.Instance.HasItem(toBuy.plantName))
+                PlayerInventory.Instance.IncItem(toBuy.plantName);
             else
-            {
-                if(PlayerInventory.Instance.HasItem("Lemon Tree"))
-                    PlayerInventory.Instance.IncItem("Lemon Tree");
-                else
-                    PlayerInventory.Instance.AddItem("Lemon Tree", prefab3, 1);
-            }
+                PlayerInventory.Instance.AddItem(toBuy.plantName, toBuy.plantPrefab, 1);
 
-            if(val > 0)
-            {
-                val -= 1;
-                if(val == 0)
-                    item3StockTxt.text = "Out of Stock!";
-                else
-                    item3StockTxt.text = oldStock.Substring(0, length-1) + "" + val;
-            }
+            PlayerInventory.Instance.deductCurrency(10);
+            ShopInventory.Instance.decStock(toBuy); 
         }
+
+        // if(val > 0)
+        // {
+        //     val -= 1;
+        //     if(val == 0)
+        //         item1StockTxt.text = "Out of Stock!";
+        //     else
+        //         item1StockTxt.text = oldStock.Substring(0, length-1) + "" + val;
+        // }
         // TODO: Reference number in stock text ("In Stock: XX")
         //       Add plant type bought to player inventory
         

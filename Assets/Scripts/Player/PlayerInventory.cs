@@ -12,8 +12,8 @@ public class InventoryItem
 public class PlayerInventory : MonoBehaviour
 {
     public static PlayerInventory Instance;
-
     public List<InventoryItem> items = new List<InventoryItem>();
+    public int playerMoney = 100;
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class PlayerInventory : MonoBehaviour
         else
             Destroy(gameObject);
 
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     public void AddItem(string plantName, GameObject plantPrefab, int amount)
@@ -57,6 +57,21 @@ public class PlayerInventory : MonoBehaviour
         InventoryItem item = GetItem(plantName);
         if (item != null && item.amount > 0)
             item.amount--;
+    }
+
+    public void incCurrency(int amount)
+    {
+        playerMoney += amount;
+    }
+
+    public void deductCurrency(int amount)
+    {
+        playerMoney -= amount;
+    }
+
+    public int getCurrency()
+    {
+        return playerMoney;
     }
 }
 

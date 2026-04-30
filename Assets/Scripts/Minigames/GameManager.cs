@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour
         {
             gameOverPanel.SetActive(true);
             if (finalScoreText != null) finalScoreText.text = $"Final Score: {score}";
+            PlayerInventory.Instance.incCurrency(score*5);
         }
     }
 
