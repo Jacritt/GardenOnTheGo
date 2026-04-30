@@ -9,7 +9,7 @@ public class ShopItem
     public GameObject plantPrefab;
     public Sprite plantSprite;
     public int quantity = 3;
-    public int cost;
+    public int cost = 10;
 }
 
 public class ShopInventory : MonoBehaviour

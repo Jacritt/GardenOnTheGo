@@ -94,31 +94,16 @@ public class UserBuyTransaction : MonoBehaviour
         
         int val = toBuy.quantity;
         
-        if(val > 0)
+        if((val > 0) && (PlayerInventory.Instance.getCurrency() >= toBuy.cost))
         {
             if(PlayerInventory.Instance.HasItem(toBuy.plantName))
                 PlayerInventory.Instance.IncItem(toBuy.plantName);
             else
                 PlayerInventory.Instance.AddItem(toBuy.plantName, toBuy.plantPrefab, 1);
 
-            PlayerInventory.Instance.deductCurrency(10);
+            PlayerInventory.Instance.deductCurrency(toBuy.cost);
             ShopInventory.Instance.decStock(toBuy); 
         }
-
-        // if(val > 0)
-        // {
-        //     val -= 1;
-        //     if(val == 0)
-        //         item1StockTxt.text = "Out of Stock!";
-        //     else
-        //         item1StockTxt.text = oldStock.Substring(0, length-1) + "" + val;
-        // }
-        // TODO: Reference number in stock text ("In Stock: XX")
-        //       Add plant type bought to player inventory
-        
-        
-        //       Decrease value in stock text
-
 
         reflectOutOfStock();
     }
