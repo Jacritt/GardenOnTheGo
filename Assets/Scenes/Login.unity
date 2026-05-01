@@ -1149,7 +1149,7 @@ MonoBehaviour:
   items:
   - plantName: Carrot
     description: 
-    plantPrefab: {fileID: 1672645118631681119, guid: 138e264a2efb30c4bbb5412cb5ef097b, type: 3}
+    plantPrefab: {fileID: 1672645118631681119, guid: 9eff67fe5f82f6a45b9b2c38d174157a, type: 3}
     amount: 2
     icon: {fileID: -1144708191, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
     isDiscovered: 0

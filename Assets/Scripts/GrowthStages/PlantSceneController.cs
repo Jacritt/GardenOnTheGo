@@ -150,7 +150,7 @@ public class PlantSceneController : MonoBehaviour
         Debug.Log($"Harvesting plant {current.plantName} ({current.UniqueId})");
 
         // 1. Adds the item count to inventory (stays hidden in book)
-        PlayerInventory.Instance.AddItem(current.plantName, 1);
+        PlayerInventory.Instance.AddItem(current.plantName, 0);
 
         // 2. UNLOCKS the silhouette in the Botany Book
         PlayerInventory.Instance.DiscoverPlant(current.plantName);
