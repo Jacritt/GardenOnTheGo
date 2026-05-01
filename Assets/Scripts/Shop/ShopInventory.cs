@@ -18,15 +18,18 @@ public class ShopInventory : MonoBehaviour
     public List<ShopItem> shopStock = new List<ShopItem>();
     public int currCycle = 0;
     public int stockSet = 0;
-    
+
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
+        {
             Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject);
+        }
     }
 
     // Start is called before the first frame update

@@ -26,8 +26,15 @@ public class PlayerInventory : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // --- UPDATED LOGIC ---
@@ -99,6 +106,21 @@ public class PlayerInventory : MonoBehaviour
     public int getCurrency()
     {
         return playerMoney;
+    }
+
+    public InventoryItem GetItem(string plantName)
+    {
+        return items.Find(i => i.plantName == plantName);
+    }
+
+    public void AddMoney(int amount)
+    {
+        playerMoney += amount;
+    }
+
+    public void SpendMoney(int amount)
+    {
+        playerMoney -= amount;
     }
 }
 

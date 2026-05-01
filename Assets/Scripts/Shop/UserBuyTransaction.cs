@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,112 +5,130 @@ using TMPro;
 
 public class UserBuyTransaction : MonoBehaviour
 {
-    public static UserBuyTransaction Instance;
-    public Button buy1, buy2, buy3;
-    public TMP_Text item1Name, item2Name, item3Name;
-    public TMP_Text item1StockTxt, item2StockTxt, item3StockTxt;
-    public int item1Stock, item2Stock, item3Stock;
-    public GameObject prefab1, prefab2, prefab3;
-    public GameObject item1Sprite, item2Sprite, item3Sprite;
+    [Header("Buttons")]
+    public Button buy1;
+    public Button buy2;
+    public Button buy3;
+
+    [Header("Plant Names")]
+    public TMP_Text item1Name;
+    public TMP_Text item2Name;
+    public TMP_Text item3Name;
+
+    [Header("Stock Text")]
+    public TMP_Text item1StockTxt;
+    public TMP_Text item2StockTxt;
+    public TMP_Text item3StockTxt;
+
+    [Header("Plant Images")]
+    public Image item1Image;
+    public Image item2Image;
+    public Image item3Image;
+
+    [Header("Money")]
     public TMP_Text stockTxt;
-    public Sprite icon1, icon2, icon3;
 
-    // Start is called before the first frame update
-    private void Awake()
-    {
-        if (Instance == null)
-        { Instance = this; }
-        // else if (Instance != this)
-        // { Destroy(gameObject); }
+    private InventoryItem slot1;
+    private InventoryItem slot2;
+    private InventoryItem slot3;
 
-        //DontDestroyOnLoad(gameObject);
-    }
-    
+    private int stock1;
+    private int stock2;
+    private int stock3;
+
+    private int price = 10;
+
     void Start()
     {
-        // Declare shop vars
-        ShopItem[] currStock = ShopInventory.Instance.reStock();
+        GenerateShop();
 
-        prefab1 = currStock[0].plantPrefab; 
-        prefab2 = currStock[1].plantPrefab; 
-        prefab3 = currStock[2].plantPrefab;
-
-        Debug.Log(prefab1);
-        Debug.Log(prefab2);
-        Debug.Log(prefab3);
-
-        item1Stock = currStock[0].quantity; 
-        item2Stock = currStock[1].quantity; 
-        item3Stock = currStock[2].quantity;
-
-        Debug.Log(item1Stock);
-        Debug.Log(item1Stock);
-        Debug.Log(item1Stock);
-
-        item1Name.text = currStock[0].plantName;
-        item2Name.text = currStock[1].plantName;
-        item3Name.text = currStock[2].plantName;
-
-    //    item1Sprite.sprite = currStock[0].plantPrefab.
-        
-
-        buy1.onClick.AddListener(delegate {decrementStock(currStock[0]); });
-        buy2.onClick.AddListener(delegate {decrementStock(currStock[1]); });
-        buy3.onClick.AddListener(delegate {decrementStock(currStock[2]); });
+        buy1.onClick.AddListener(() => Buy(1));
+        buy2.onClick.AddListener(() => Buy(2));
+        buy3.onClick.AddListener(() => Buy(3));
     }
 
-    // Update is called once per frame
-    void Update()
+    void GenerateShop()
     {
-        ShopItem[] currStock = ShopInventory.Instance.reStock();
+        List<InventoryItem> pool = new List<InventoryItem>(PlayerInventory.Instance.items);
 
-        prefab1 = currStock[0].plantPrefab; 
-        prefab2 = currStock[1].plantPrefab; 
-        prefab3 = currStock[2].plantPrefab;
+        Shuffle(pool);
 
-        item1Stock = currStock[0].quantity; 
-        item2Stock = currStock[1].quantity; 
-        item3Stock = currStock[2].quantity;
+        slot1 = pool[0];
+        slot2 = pool[1];
+        slot3 = pool[2];
 
-        item1Name.text = currStock[0].plantName.ToUpper();
-        item2Name.text = currStock[1].plantName.ToUpper();
-        item3Name.text = currStock[2].plantName.ToUpper();
+        stock1 = Random.Range(1, 6);
+        stock2 = Random.Range(1, 6);
+        stock3 = Random.Range(1, 6);
 
-        item1StockTxt.text = "IN STOCK: " + item1Stock;
-        item2StockTxt.text = "IN STOCK: " + item2Stock;
-        item3StockTxt.text = "IN STOCK: " + item3Stock;
-
-        item1Sprite.GetComponent<SpriteRenderer>().sprite = currStock[0].plantSprite;
-        item2Sprite.GetComponent<SpriteRenderer>().sprite = currStock[1].plantSprite;
-        item3Sprite.GetComponent<SpriteRenderer>().sprite = currStock[2].plantSprite;
-
-        string stockTxtSpliced = stockTxt.text;
-        stockTxt.text = stockTxtSpliced.Substring(0,18) + " " + PlayerInventory.Instance.getCurrency();
+        RefreshUI();
     }
 
-    // Trigger via BUY button click
-    public void decrementStock(ShopItem toBuy)
+    void RefreshUI()
     {
-        
-        int val = toBuy.quantity;
-        
-        if((val > 0) && (PlayerInventory.Instance.getCurrency() >= toBuy.cost))
+        item1Name.text = slot1.plantName.ToUpper();
+        item2Name.text = slot2.plantName.ToUpper();
+        item3Name.text = slot3.plantName.ToUpper();
+
+        item1StockTxt.text = "IN STOCK: " + stock1;
+        item2StockTxt.text = "IN STOCK: " + stock2;
+        item3StockTxt.text = "IN STOCK: " + stock3;
+
+        item1Image.sprite = slot1.icon;
+        item2Image.sprite = slot2.icon;
+        item3Image.sprite = slot3.icon;
+
+        stockTxt.text = "AVAILABLE MONEY: $" + PlayerInventory.Instance.getCurrency();
+    }
+
+    void Buy(int slot)
+    {
+        InventoryItem chosen = null;
+
+        switch (slot)
         {
-            if(PlayerInventory.Instance.HasItem(toBuy.plantName))
-                PlayerInventory.Instance.IncItem(toBuy.plantName);
-            else
-                PlayerInventory.Instance.AddItem(toBuy.plantName, 1);
+            case 1:
+                if (stock1 <= 0) return;
+                chosen = slot1;
+                stock1--;
+                break;
 
-            PlayerInventory.Instance.deductCurrency(toBuy.cost);
-            ShopInventory.Instance.decStock(toBuy); 
+            case 2:
+                if (stock2 <= 0) return;
+                chosen = slot2;
+                stock2--;
+                break;
+
+            case 3:
+                if (stock3 <= 0) return;
+                chosen = slot3;
+                stock3--;
+                break;
         }
 
-        reflectOutOfStock();
+        if (PlayerInventory.Instance.getCurrency() < price)
+        {
+            Debug.Log("Not enough money.");
+            return;
+        }
+
+        PlayerInventory.Instance.AddItem(chosen.plantName, 1);
+        PlayerInventory.Instance.deductCurrency(price);
+
+        RefreshUI();
+
+        Debug.Log("Bought: " + chosen.plantName);
     }
 
-    public void reflectOutOfStock()
+    void Shuffle(List<InventoryItem> list)
     {
-        // TODO: Check if stock text = 0 for plant
-        //       If true, grey out sprite* (or simply declare "OUT OF STOCK" in text)
+        for (int i = 0; i < list.Count; i++)
+        {
+            int randomIndex = Random.Range(i, list.Count);
+
+            InventoryItem temp = list[i];
+            list[i] = list[randomIndex];
+            list[randomIndex] = temp;
+        }
     }
 }
