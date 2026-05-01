@@ -1286,12 +1286,12 @@ MonoBehaviour:
     description: 
     plantPrefab: {fileID: 5127436215206138064, guid: 9c97ba7a149e37d499a7919e8661b02c, type: 3}
     amount: 1
-  playerMoney: 100
     icon: {fileID: -2054720952, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
     isDiscovered: 0
     growthStageSprites: []
     maxStageReached: -1
     isCompleted: 0
+  playerMoney: 100
 --- !u!4 &671657207
 Transform:
   m_ObjectHideFlags: 0
