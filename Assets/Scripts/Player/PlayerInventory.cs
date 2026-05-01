@@ -61,10 +61,10 @@ public class PlayerInventory : MonoBehaviour
 
     // --- LEGACY SUPPORT FOR TEAMMATES ---
 
-    public void AddItem(string plantName, GameObject prefab, Sprite icon, int amount)
-    {
-        AddItem(plantName, amount);
-    }
+    // public void AddItem(string plantName, GameObject prefab, Sprite icon, int amount)
+    // {
+    //     AddItem(plantName, amount);
+    // }
 
     public bool HasItem(string plantName)
     {

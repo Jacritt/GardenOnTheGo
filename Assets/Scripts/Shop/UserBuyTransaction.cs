@@ -24,7 +24,7 @@ public class UserBuyTransaction : MonoBehaviour
         // else if (Instance != this)
         // { Destroy(gameObject); }
 
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
     }
     
     void Start()
@@ -100,7 +100,7 @@ public class UserBuyTransaction : MonoBehaviour
             if(PlayerInventory.Instance.HasItem(toBuy.plantName))
                 PlayerInventory.Instance.IncItem(toBuy.plantName);
             else
-                PlayerInventory.Instance.AddItem(toBuy.plantName, toBuy.plantPrefab, 1);
+                PlayerInventory.Instance.AddItem(toBuy.plantName, 1);
 
             PlayerInventory.Instance.deductCurrency(toBuy.cost);
             ShopInventory.Instance.decStock(toBuy); 
