@@ -1558,6 +1558,9 @@ MonoBehaviour:
   item2Sprite: {fileID: 2081292120}
   item3Sprite: {fileID: 604923119}
   stockTxt: {fileID: 1422806124}
+  icon1: {fileID: 0}
+  icon2: {fileID: 0}
+  icon3: {fileID: 0}
 --- !u!1 &433645775
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,6 +2487,8 @@ GameObject:
   - component: {fileID: 1413505240}
   - component: {fileID: 1413505239}
   - component: {fileID: 1413505238}
+  - component: {fileID: 1413505242}
+  - component: {fileID: 1413505243}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2604,12 +2609,22 @@ MonoBehaviour:
   buy1: {fileID: 433645777}
   buy2: {fileID: 209310952}
   buy3: {fileID: 1796175054}
+  item1Name: {fileID: 0}
+  item2Name: {fileID: 0}
+  item3Name: {fileID: 0}
   item1StockTxt: {fileID: 1977987717}
   item2StockTxt: {fileID: 1845514428}
   item3StockTxt: {fileID: 1849793456}
+  item1Stock: 0
+  item2Stock: 0
+  item3Stock: 0
   prefab1: {fileID: 4967164015982793778, guid: 7bb227a04f38f724a9a35984cdfafb63, type: 3}
   prefab2: {fileID: 6049984188416731766, guid: a5adff4996367f84fb9a755042240c4c, type: 3}
   prefab3: {fileID: 4627054214175977774, guid: 1433d1877c7e5774aaa0855cf5848e9a, type: 3}
+  item1Sprite: {fileID: 0}
+  item2Sprite: {fileID: 0}
+  item3Sprite: {fileID: 0}
+  stockTxt: {fileID: 0}
   icon1: {fileID: -1291692998, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
   icon2: {fileID: -1824192565, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
   icon3: {fileID: 2077028166, guid: 466b85ccb62d9b34abc7f8c16820bbf2, type: 3}
@@ -2626,6 +2641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
+  playerMoney: 100
 --- !u!1 &1422806122
 GameObject:
   m_ObjectHideFlags: 0
