@@ -11,6 +11,14 @@ public class WellButton : MonoBehaviour
 
     public void AddWater()
     {
+        if (PlayerInventory.Instance.getCurrency() < 5)
+        {
+            Debug.Log("Not enough money to add a day!");
+            return;
+        }
+
+        PlayerInventory.Instance.SpendMoney(5);
+
         if (applyToAll)
         {
             PlantGameManager.Instance?.AddWaterToAll();

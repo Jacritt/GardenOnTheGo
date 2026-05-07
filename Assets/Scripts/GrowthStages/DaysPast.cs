@@ -7,6 +7,14 @@ public class DaysPast : MonoBehaviour
 
     public void AddDay()
     {
+        if (PlayerInventory.Instance.getCurrency() < 5)
+        {
+            Debug.Log("Not enough money to add a day!");
+            return;
+        }
+
+        PlayerInventory.Instance.SpendMoney(5);
+
         if (PlantGameManager.Instance == null)
         {
             Debug.LogError("DaysPast: PlantGameManager missing!");

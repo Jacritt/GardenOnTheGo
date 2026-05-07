@@ -8,6 +8,8 @@ public class MinigameTracker : MonoBehaviour
 
     public void AddMinigame()
     {
+
+        PlayerInventory.Instance.AddMoney(10);
         // Check if we apply to all or single plant
         if (applyToAll)
         {

@@ -933,10 +933,14 @@ MonoBehaviour:
   - {fileID: 6035741949325715468, guid: 4044835cf3707794f8ebfa2a9a5cd25f, type: 3}
   - {fileID: 9077297817101070702, guid: 52c13413dfed9264c91a1e0efb32bf8c, type: 3}
   - {fileID: 4363992674341515121, guid: bf1e4059b68fdce409bb065b1ea48259, type: 3}
+  - {fileID: 3122867053922046832, guid: 6e0e446255af89e4892c128cae2ecacb, type: 3}
+  - {fileID: 9180547686569589684, guid: b45d4ed2fd56ee2408ae7f605b2ff876, type: 3}
+  - {fileID: 5449898107764340824, guid: 041aad9f90fd31c4eadd9169589bb6ed, type: 3}
+  - {fileID: 6671274987105314391, guid: 533f169b5cb9cf546844b68df8b3610f, type: 3}
   miniGameSpawnParent: {fileID: 563766963}
   startRoundDuration: 15
   minRoundDuration: 1.2
-  difficultyRampPerScore: 0.05
+  difficultyRampPerScore: 0.5
   startingLives: 3
   lives: 0
   score: 0
